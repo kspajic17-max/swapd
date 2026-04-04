@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } import { t } from '../app/theme';
+import 'react';
 import {
   View,
   Text,
@@ -191,8 +192,8 @@ export default function ListingDetailScreen({ route, navigation }) {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <StatusBar barStyle="light-content" />
-        <ActivityIndicator size="large" color="#FF6B6B" />
+        <StatusBar barStyle="dark-content" backgroundColor={t.background} />
+        <ActivityIndicator size="large" color={t.coral} />
       </View>
     );
   }
@@ -201,7 +202,7 @@ export default function ListingDetailScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="dark-content" backgroundColor={t.background} />
 
       <ScrollView
         style={styles.scrollView}
@@ -230,7 +231,7 @@ export default function ListingDetailScreen({ route, navigation }) {
             </ScrollView>
           ) : (
             <View style={styles.imagePlaceholder}>
-              <Ionicons name="image-outline" size={64} color="#333" />
+              <Ionicons name="image-outline" size={64} color={t.textTertiary} />
               <Text style={styles.placeholderText}>No photos</Text>
             </View>
           )}
@@ -256,7 +257,7 @@ export default function ListingDetailScreen({ route, navigation }) {
             onPress={() => navigation.goBack()}
             activeOpacity={0.7}
           >
-            <Ionicons name="chevron-back" size={26} color="#fff" />
+            <Ionicons name="chevron-back" size={26} color={t.textWhite} />
           </TouchableOpacity>
         </View>
 
@@ -298,7 +299,7 @@ export default function ListingDetailScreen({ route, navigation }) {
           {/* Estimated Trade Value */}
           {listing.estimated_value ? (
             <View style={styles.tradeValueRow}>
-              <Ionicons name="pricetag" size={16} color="#FF6B6B" />
+              <Ionicons name="pricetag" size={16} color={t.coral} />
               <Text style={styles.tradeValueText}>
                 ${Number(listing.estimated_value).toFixed(0)} trade value
               </Text>
@@ -314,7 +315,7 @@ export default function ListingDetailScreen({ route, navigation }) {
           {(listing.looking_for || listing.open_to_brands || listing.not_interested_in) ? (
             <View style={styles.lookingForCard}>
               <View style={styles.lookingForHeader}>
-                <Ionicons name="swap-horizontal" size={20} color="#FF6B6B" />
+                <Ionicons name="swap-horizontal" size={20} color={t.coral} />
                 <Text style={styles.lookingForTitle}>What They're Looking For</Text>
               </View>
 
@@ -355,19 +356,19 @@ export default function ListingDetailScreen({ route, navigation }) {
               <Image source={{ uri: profile.avatar_url }} style={styles.sellerAvatar} />
             ) : (
               <View style={styles.sellerAvatarPlaceholder}>
-                <Ionicons name="person" size={20} color="#666" />
+                <Ionicons name="person" size={20} color={t.textTertiary} />
               </View>
             )}
             <View style={styles.sellerInfo}>
               <Text style={styles.sellerUsername}>@{profile?.username || 'unknown'}</Text>
               {(profile?.location || listing.shipping_from) ? (
                 <View style={styles.sellerLocationRow}>
-                  <Ionicons name="location-outline" size={13} color="#777" />
+                  <Ionicons name="location-outline" size={13} color={t.textTertiary} />
                   <Text style={styles.sellerLocation}>{profile?.location || listing.shipping_from}</Text>
                 </View>
               ) : null}
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#555" />
+            <Ionicons name="chevron-forward" size={20} color={t.textTertiary} />
           </TouchableOpacity>
 
           {/* Description */}
@@ -381,7 +382,7 @@ export default function ListingDetailScreen({ route, navigation }) {
           {/* Shipping From */}
           {listing.shipping_from ? (
             <View style={styles.shippingRow}>
-              <Ionicons name="airplane-outline" size={16} color="#888" />
+              <Ionicons name="airplane-outline" size={16} color={t.textTertiary} />
               <Text style={styles.shippingText}>Ships from {listing.shipping_from}</Text>
             </View>
           ) : null}
@@ -390,7 +391,7 @@ export default function ListingDetailScreen({ route, navigation }) {
           {!isOwnListing && suggestedTrades.length > 0 && (
             <View style={styles.suggestedTradesSection}>
               <View style={styles.suggestedTradesHeader}>
-                <Ionicons name="swap-horizontal" size={20} color="#FF6B6B" />
+                <Ionicons name="swap-horizontal" size={20} color={t.coral} />
                 <Text style={styles.suggestedTradesTitle}>Trade ideas for this item</Text>
               </View>
               <Text style={styles.suggestedTradesSubtitle}>
@@ -412,7 +413,7 @@ export default function ListingDetailScreen({ route, navigation }) {
                         <Image source={{ uri: item.coverImage }} style={styles.suggestedTradeImage} resizeMode="cover" />
                       ) : (
                         <View style={styles.suggestedTradeImagePlaceholder}>
-                          <Ionicons name="image-outline" size={20} color="#444" />
+                          <Ionicons name="image-outline" size={20} color={t.textTertiary} />
                         </View>
                       )}
                       <View style={styles.suggestedTradeDetails}>
@@ -490,7 +491,7 @@ export default function ListingDetailScreen({ route, navigation }) {
               ]);
             }}
           >
-            <Ionicons name="create-outline" size={20} color="#fff" style={{ marginRight: 8 }} />
+            <Ionicons name="create-outline" size={20} color={t.textWhite} style={{ marginRight: 8 }} />
             <Text style={styles.bottomButtonText}>Edit Listing</Text>
           </TouchableOpacity>
         ) : (
@@ -552,7 +553,7 @@ export default function ListingDetailScreen({ route, navigation }) {
               activeOpacity={0.8}
               onPress={() => navigation.navigate('SwapOffer', { listing })}
             >
-              <Ionicons name="swap-horizontal" size={20} color="#fff" style={{ marginRight: 8 }} />
+              <Ionicons name="swap-horizontal" size={20} color={t.textWhite} style={{ marginRight: 8 }} />
               <Text style={styles.bottomButtonText}>Make Offer</Text>
             </TouchableOpacity>
           </View>
@@ -565,11 +566,11 @@ export default function ListingDetailScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   loadingContainer: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -585,7 +586,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     width: SCREEN_WIDTH,
     height: IMAGE_HEIGHT,
-    backgroundColor: '#111',
+    backgroundColor: t.placeholder,
   },
   carouselImage: {
     width: SCREEN_WIDTH,
@@ -596,10 +597,10 @@ const styles = StyleSheet.create({
     height: IMAGE_HEIGHT,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#111',
+    backgroundColor: t.placeholder,
   },
   placeholderText: {
-    color: '#444',
+    color: t.textTertiary,
     fontSize: 14,
     marginTop: 8,
   },
@@ -651,21 +652,21 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '800',
-    color: '#fff',
+    color: t.text,
     flex: 1,
     lineHeight: 30,
   },
   brandBadge: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
     marginTop: 2,
   },
   brandBadgeText: {
-    color: '#ccc',
+    color: t.textSecondary,
     fontSize: 13,
     fontWeight: '600',
   },
@@ -730,7 +731,7 @@ const styles = StyleSheet.create({
 
   /* Looking For Card */
   lookingForCard: {
-    backgroundColor: '#121216',
+    backgroundColor: t.cardAlt,
     borderRadius: 16,
     padding: 20,
     borderWidth: 1.5,
@@ -746,7 +747,7 @@ const styles = StyleSheet.create({
   lookingForTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
   },
   lookingForField: {
     marginBottom: 12,
@@ -754,19 +755,19 @@ const styles = StyleSheet.create({
   lookingForLabel: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#888',
+    color: t.textTertiary,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
     marginBottom: 4,
   },
   lookingForValue: {
     fontSize: 15,
-    color: '#ddd',
+    color: t.textSecondary,
     lineHeight: 22,
   },
   lookingForNotValue: {
     fontSize: 15,
-    color: '#999',
+    color: t.textTertiary,
     lineHeight: 22,
     fontStyle: 'italic',
   },
@@ -775,7 +776,7 @@ const styles = StyleSheet.create({
   sellerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 14,
     padding: 14,
     marginBottom: 20,
@@ -784,13 +785,13 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: '#252525',
+    backgroundColor: t.card,
   },
   sellerAvatarPlaceholder: {
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: '#252525',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -799,7 +800,7 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   sellerUsername: {
-    color: '#fff',
+    color: t.text,
     fontSize: 16,
     fontWeight: '700',
   },
@@ -810,7 +811,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   sellerLocation: {
-    color: '#777',
+    color: t.textTertiary,
     fontSize: 13,
   },
 
@@ -821,13 +822,13 @@ const styles = StyleSheet.create({
   sectionLabel: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#888',
+    color: t.textTertiary,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
     marginBottom: 8,
   },
   descriptionText: {
-    color: '#ccc',
+    color: t.textSecondary,
     fontSize: 15,
     lineHeight: 22,
   },
@@ -840,10 +841,10 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     paddingVertical: 12,
     borderTopWidth: 1,
-    borderTopColor: '#1a1a1a',
+    borderTopColor: t.separator,
   },
   shippingText: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 14,
   },
 
@@ -851,7 +852,7 @@ const styles = StyleSheet.create({
   suggestedTradesSection: {
     marginTop: 8,
     marginBottom: 16,
-    backgroundColor: '#121216',
+    backgroundColor: t.cardAlt,
     borderRadius: 16,
     padding: 18,
     borderWidth: 1.5,
@@ -866,17 +867,17 @@ const styles = StyleSheet.create({
   suggestedTradesTitle: {
     fontSize: 17,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
   },
   suggestedTradesSubtitle: {
     fontSize: 13,
-    color: '#888',
+    color: t.textTertiary,
     marginBottom: 14,
   },
   suggestedTradeCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     padding: 10,
     marginBottom: 10,
@@ -890,13 +891,13 @@ const styles = StyleSheet.create({
     width: 56,
     height: 70,
     borderRadius: 8,
-    backgroundColor: '#111',
+    backgroundColor: t.placeholder,
   },
   suggestedTradeImagePlaceholder: {
     width: 56,
     height: 70,
     borderRadius: 8,
-    backgroundColor: '#111',
+    backgroundColor: t.placeholder,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -905,7 +906,7 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   suggestedTradeItemTitle: {
-    color: '#fff',
+    color: t.text,
     fontSize: 14,
     fontWeight: '600',
     marginBottom: 4,
@@ -917,17 +918,17 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   suggestedTradeChip: {
-    color: '#aaa',
+    color: t.textTertiary,
     fontSize: 11,
     fontWeight: '500',
-    backgroundColor: '#252525',
+    backgroundColor: t.card,
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 4,
     overflow: 'hidden',
   },
   suggestedTradeBrand: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 11,
     flexShrink: 1,
   },
@@ -944,7 +945,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   offerThisButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 13,
     fontWeight: '700',
   },
@@ -958,16 +959,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 12,
     paddingBottom: 34,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     borderTopWidth: 1,
-    borderTopColor: '#1a1a1a',
+    borderTopColor: t.separator,
   },
   bottomButtons: {
     flexDirection: 'row',
     gap: 10,
   },
   askButton: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 14,
     paddingVertical: 16,
     paddingHorizontal: 16,
@@ -975,10 +976,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   askButtonText: {
-    color: '#ccc',
+    color: t.textSecondary,
     fontSize: 14,
     fontWeight: '600',
   },
@@ -1002,7 +1003,7 @@ const styles = StyleSheet.create({
     borderColor: '#3a3a3a',
   },
   bottomButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 18,
     fontWeight: '700',
   },

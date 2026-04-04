@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState } import { t } from '../app/theme';
+import 'react';
 import {
   View,
   Text,
@@ -85,7 +86,7 @@ export default function OnboardingScreen({ onComplete }) {
         <TextInput
           style={styles.input}
           placeholder="Your name"
-          placeholderTextColor="#555"
+          placeholderTextColor={t.textTertiary}
           value={displayName}
           onChangeText={setDisplayName}
           autoCapitalize="words"
@@ -95,7 +96,7 @@ export default function OnboardingScreen({ onComplete }) {
         <TextInput
           style={styles.input}
           placeholder="e.g. Los Angeles, CA"
-          placeholderTextColor="#555"
+          placeholderTextColor={t.textTertiary}
           value={location}
           onChangeText={setLocation}
           autoCapitalize="words"
@@ -108,7 +109,7 @@ export default function OnboardingScreen({ onComplete }) {
           disabled={saving}
         >
           {saving ? (
-            <ActivityIndicator color="#fff" />
+            <ActivityIndicator color={t.textWhite} />
           ) : (
             <Text style={styles.primaryButtonText}>Let's go</Text>
           )}
@@ -121,7 +122,7 @@ export default function OnboardingScreen({ onComplete }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   scrollView: {
     flex: 1,
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
   brand: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#fff',
+    color: t.text,
     letterSpacing: -0.5,
     textAlign: 'center',
     marginBottom: 40,
@@ -140,31 +141,31 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#fff',
+    color: t.text,
     marginBottom: 10,
   },
   subtitle: {
     fontSize: 15,
-    color: '#888',
+    color: t.textTertiary,
     lineHeight: 22,
     marginBottom: 32,
   },
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#ccc',
+    color: t.textSecondary,
     marginBottom: 8,
     marginTop: 14,
   },
   input: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 16,
-    color: '#fff',
+    color: t.text,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   primaryButton: {
     backgroundColor: '#FF6B6B',
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   primaryButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 17,
     fontWeight: '700',
   },

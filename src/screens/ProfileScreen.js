@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } import { t } from '../app/theme';
+import 'react';
 import {
   View,
   Text,
@@ -232,7 +233,7 @@ export default function ProfileScreen() {
           onPress={handleSettingsPress}
           activeOpacity={0.7}
         >
-          <Ionicons name="settings-outline" size={24} color="#999" />
+          <Ionicons name="settings-outline" size={24} color={t.textTertiary} />
         </TouchableOpacity>
 
         {/* Admin button */}
@@ -242,7 +243,7 @@ export default function ProfileScreen() {
             onPress={() => navigation.navigate('AdminScreen')}
             activeOpacity={0.7}
           >
-            <Ionicons name="shield" size={18} color="#FF6B6B" />
+            <Ionicons name="shield" size={18} color={t.coral} />
             <Text style={styles.adminButtonText}>Admin</Text>
           </TouchableOpacity>
         )}
@@ -263,7 +264,7 @@ export default function ProfileScreen() {
           <Text style={styles.username}>@{profile.username || 'user'}</Text>
           {profile.edu_verified && (
             <View style={styles.eduBadge}>
-              <Ionicons name="checkmark-circle" size={16} color="#FF6B6B" />
+              <Ionicons name="checkmark-circle" size={16} color={t.coral} />
               <Text style={styles.eduBadgeText}>.edu verified</Text>
             </View>
           )}
@@ -282,7 +283,7 @@ export default function ProfileScreen() {
         {/* Location */}
         {profile.location ? (
           <View style={styles.locationRow}>
-            <Ionicons name="location-sharp" size={14} color="#FF6B6B" />
+            <Ionicons name="location-sharp" size={14} color={t.coral} />
             <Text style={styles.locationText}>{profile.location}</Text>
           </View>
         ) : null}
@@ -318,7 +319,7 @@ export default function ProfileScreen() {
         {profile.looking_for || profile.open_to_brands || profile.not_interested_in ? (
           <View style={styles.lookingForCard}>
             <View style={styles.lookingForCardHeader}>
-              <Ionicons name="search" size={16} color="#FF6B6B" />
+              <Ionicons name="search" size={16} color={t.coral} />
               <Text style={styles.lookingForCardTitle}>What I'm Looking For</Text>
             </View>
             {profile.looking_for ? (
@@ -374,7 +375,7 @@ export default function ProfileScreen() {
 
   const renderClosetEmpty = () => (
     <View style={styles.emptyContainer}>
-      <Ionicons name="shirt-outline" size={56} color="#333" />
+      <Ionicons name="shirt-outline" size={56} color={t.textTertiary} />
       <Text style={styles.emptyTitle}>Your closet is empty</Text>
       <Text style={styles.emptySubtitle}>
         Start adding pieces to swap!
@@ -384,7 +385,7 @@ export default function ProfileScreen() {
         onPress={() => navigation.navigate('CreateListing')}
         activeOpacity={0.8}
       >
-        <Ionicons name="add" size={20} color="#fff" />
+        <Ionicons name="add" size={20} color={t.textWhite} />
         <Text style={styles.addButtonText}>Add Your First Item</Text>
       </TouchableOpacity>
     </View>
@@ -392,7 +393,7 @@ export default function ProfileScreen() {
 
   const renderWishlistEmpty = () => (
     <View style={styles.emptyContainer}>
-      <Ionicons name="heart-outline" size={56} color="#333" />
+      <Ionicons name="heart-outline" size={56} color={t.textTertiary} />
       <Text style={styles.emptyTitle}>Your wishlist is empty</Text>
       <Text style={styles.emptySubtitle}>
         Save items you love here
@@ -422,7 +423,7 @@ export default function ProfileScreen() {
           />
         ) : (
           <View style={styles.gridImagePlaceholder}>
-            <Ionicons name="image-outline" size={28} color="#444" />
+            <Ionicons name="image-outline" size={28} color={t.textTertiary} />
           </View>
         )}
       </TouchableOpacity>
@@ -432,8 +433,8 @@ export default function ProfileScreen() {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <StatusBar barStyle="light-content" />
-        <ActivityIndicator size="large" color="#FF6B6B" />
+        <StatusBar barStyle="dark-content" backgroundColor={t.background} />
+        <ActivityIndicator size="large" color={t.coral} />
       </View>
     );
   }
@@ -442,7 +443,7 @@ export default function ProfileScreen() {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="dark-content" backgroundColor={t.background} />
       {showGrid ? (
         <FlatList
           data={listings}
@@ -488,11 +489,11 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   loadingContainer: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -522,7 +523,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 14,
@@ -549,7 +550,7 @@ const styles = StyleSheet.create({
     width: 88,
     height: 88,
     borderRadius: 44,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderWidth: 2,
     borderColor: '#FF6B6B',
     alignItems: 'center',
@@ -568,7 +569,7 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   username: {
-    color: '#fff',
+    color: t.text,
     fontSize: 22,
     fontWeight: '800',
     letterSpacing: -0.3,
@@ -584,12 +585,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   displayName: {
-    color: '#999',
+    color: t.textTertiary,
     fontSize: 15,
     marginTop: 2,
   },
   bio: {
-    color: '#ccc',
+    color: t.textSecondary,
     fontSize: 14,
     textAlign: 'center',
     marginTop: 10,
@@ -603,7 +604,7 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   locationText: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 13,
   },
 
@@ -619,12 +620,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   statNumber: {
-    color: '#fff',
+    color: t.text,
     fontSize: 16,
     fontWeight: '700',
   },
   statLabel: {
-    color: '#666',
+    color: t.textTertiary,
     fontSize: 12,
     marginTop: 2,
   },
@@ -637,15 +638,15 @@ const styles = StyleSheet.create({
   /* Edit button */
   editButton: {
     marginTop: 18,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 40,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   editButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 14,
     fontWeight: '600',
   },
@@ -655,7 +656,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 22,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: t.separator,
     width: '100%',
   },
   tab: {
@@ -665,12 +666,12 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   tabText: {
-    color: '#666',
+    color: t.textTertiary,
     fontSize: 14,
     fontWeight: '600',
   },
   tabTextActive: {
-    color: '#fff',
+    color: t.text,
   },
   tabUnderline: {
     position: 'absolute',
@@ -690,12 +691,12 @@ const styles = StyleSheet.create({
   gridImage: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#111',
+    backgroundColor: t.placeholder,
   },
   gridImagePlaceholder: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#151515',
+    backgroundColor: t.placeholder,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -708,13 +709,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
   },
   emptyTitle: {
-    color: '#fff',
+    color: t.text,
     fontSize: 18,
     fontWeight: '600',
     marginTop: 16,
   },
   emptySubtitle: {
-    color: '#666',
+    color: t.textTertiary,
     fontSize: 14,
     marginTop: 6,
     textAlign: 'center',
@@ -731,7 +732,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   addButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 15,
     fontWeight: '700',
   },
@@ -740,7 +741,7 @@ const styles = StyleSheet.create({
   lookingForCard: {
     marginTop: 18,
     marginHorizontal: 20,
-    backgroundColor: '#121216',
+    backgroundColor: t.cardAlt,
     borderRadius: 14,
     padding: 16,
     borderWidth: 1.5,
@@ -756,11 +757,11 @@ const styles = StyleSheet.create({
   lookingForCardTitle: {
     fontSize: 14,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
   },
   lookingForCardText: {
     fontSize: 14,
-    color: '#ccc',
+    color: t.textSecondary,
     lineHeight: 20,
     marginBottom: 8,
   },
@@ -777,7 +778,7 @@ const styles = StyleSheet.create({
   },
   lookingForCardValue: {
     fontSize: 13,
-    color: '#aaa',
+    color: t.textTertiary,
     flex: 1,
   },
   lookingForPrompt: {
@@ -786,7 +787,7 @@ const styles = StyleSheet.create({
   },
   lookingForPromptText: {
     fontSize: 13,
-    color: '#555',
+    color: t.textTertiary,
     textAlign: 'center',
     fontStyle: 'italic',
   },

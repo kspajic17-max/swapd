@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } import { t } from '../app/theme';
+import 'react';
 import {
   View,
   Text,
@@ -148,7 +149,7 @@ export default function CounterOfferScreen({ navigation, route }) {
           <Image source={{ uri: myListing.targetImage }} style={styles.targetImage} />
         ) : (
           <View style={[styles.targetImage, styles.placeholderImage]}>
-            <Ionicons name="image-outline" size={24} color="#555" />
+            <Ionicons name="image-outline" size={24} color={t.textTertiary} />
           </View>
         )}
         <View style={styles.targetInfo}>
@@ -169,7 +170,7 @@ export default function CounterOfferScreen({ navigation, route }) {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#fff" />
+          <Ionicons name="arrow-back" size={24} color={t.textWhite} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Counter Offer</Text>
         <View style={{ width: 40 }} />
@@ -199,7 +200,7 @@ export default function CounterOfferScreen({ navigation, route }) {
                   <Image source={{ uri: ol.coverImage }} style={styles.originalImage} />
                 ) : (
                   <View style={[styles.originalImage, styles.placeholderImage]}>
-                    <Ionicons name="image-outline" size={16} color="#555" />
+                    <Ionicons name="image-outline" size={16} color={t.textTertiary} />
                   </View>
                 )}
                 <Text style={styles.originalItemTitle} numberOfLines={1}>
@@ -230,10 +231,10 @@ export default function CounterOfferScreen({ navigation, route }) {
         </Text>
 
         {loading ? (
-          <ActivityIndicator size="large" color="#FF6B6B" style={{ marginTop: 30 }} />
+          <ActivityIndicator size="large" color={t.coral} style={{ marginTop: 30 }} />
         ) : theirListings.length === 0 ? (
           <View style={styles.emptyState}>
-            <Ionicons name="shirt-outline" size={40} color="#333" />
+            <Ionicons name="shirt-outline" size={40} color={t.textTertiary} />
             <Text style={styles.emptyText}>Their closet is empty</Text>
             <Text style={styles.emptySubtext}>
               No other active listings to choose from
@@ -254,13 +255,13 @@ export default function CounterOfferScreen({ navigation, route }) {
                     <Image source={{ uri: item.coverImage }} style={styles.gridImage} />
                   ) : (
                     <View style={[styles.gridImage, styles.placeholderImage]}>
-                      <Ionicons name="image-outline" size={20} color="#555" />
+                      <Ionicons name="image-outline" size={20} color={t.textTertiary} />
                     </View>
                   )}
                   {isSelected && (
                     <View style={styles.checkOverlay}>
                       <View style={styles.checkCircle}>
-                        <Ionicons name="checkmark" size={18} color="#fff" />
+                        <Ionicons name="checkmark" size={18} color={t.textWhite} />
                       </View>
                     </View>
                   )}
@@ -283,7 +284,7 @@ export default function CounterOfferScreen({ navigation, route }) {
           <TextInput
             style={styles.cashInput}
             placeholder="0"
-            placeholderTextColor="#555"
+            placeholderTextColor={t.textTertiary}
             keyboardType="numeric"
             value={cashAmount}
             onChangeText={setCashAmount}
@@ -295,7 +296,7 @@ export default function CounterOfferScreen({ navigation, route }) {
         <TextInput
           style={[styles.input, styles.messageInput]}
           placeholder="Explain your counter-offer..."
-          placeholderTextColor="#555"
+          placeholderTextColor={t.textTertiary}
           value={message}
           onChangeText={setMessage}
           multiline
@@ -316,7 +317,7 @@ export default function CounterOfferScreen({ navigation, route }) {
           <Ionicons
             name="swap-horizontal-outline"
             size={20}
-            color="#fff"
+            color={t.textWhite}
             style={{ marginRight: 8 }}
           />
           <Text style={styles.sendButtonText}>
@@ -333,7 +334,7 @@ export default function CounterOfferScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   header: {
     flexDirection: 'row',
@@ -342,9 +343,9 @@ const styles = StyleSheet.create({
     paddingTop: 56,
     paddingBottom: 12,
     paddingHorizontal: 16,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: t.separator,
   },
   backButton: {
     width: 40,
@@ -355,7 +356,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
   },
   scrollView: {
     flex: 1,
@@ -370,7 +371,7 @@ const styles = StyleSheet.create({
   sectionLabel: {
     fontSize: 14,
     fontWeight: '700',
-    color: '#aaa',
+    color: t.textTertiary,
     textTransform: 'uppercase',
     letterSpacing: 1,
     marginTop: 24,
@@ -387,11 +388,11 @@ const styles = StyleSheet.create({
   // Target card (your listing they want)
   targetCard: {
     flexDirection: 'row',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 14,
     padding: 12,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   targetImage: {
     width: 72,
@@ -406,17 +407,17 @@ const styles = StyleSheet.create({
   targetTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
     marginBottom: 4,
   },
   targetMeta: {
     fontSize: 13,
-    color: '#888',
+    color: t.textTertiary,
     fontWeight: '500',
   },
 
   placeholderImage: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -436,7 +437,7 @@ const styles = StyleSheet.create({
   },
   originalItemTitle: {
     fontSize: 11,
-    color: '#999',
+    color: t.textTertiary,
     marginTop: 4,
   },
   originalCash: {
@@ -452,7 +453,7 @@ const styles = StyleSheet.create({
   },
   noItemsText: {
     fontSize: 13,
-    color: '#555',
+    color: t.textTertiary,
     fontStyle: 'italic',
   },
 
@@ -500,13 +501,13 @@ const styles = StyleSheet.create({
   gridTitle: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#ddd',
+    color: t.textSecondary,
     marginTop: 6,
     paddingHorizontal: 2,
   },
   gridMeta: {
     fontSize: 11,
-    color: '#666',
+    color: t.textTertiary,
     paddingHorizontal: 2,
     marginTop: 1,
   },
@@ -515,35 +516,35 @@ const styles = StyleSheet.create({
   cashInputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
     paddingHorizontal: 16,
   },
   dollarSign: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#777',
+    color: t.textTertiary,
     marginRight: 4,
   },
   cashInput: {
     flex: 1,
     paddingVertical: 14,
     fontSize: 16,
-    color: '#fff',
+    color: t.text,
   },
 
   // Input
   input: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 16,
-    color: '#fff',
+    color: t.text,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   messageInput: {
     minHeight: 80,
@@ -558,12 +559,12 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#555',
+    color: t.textTertiary,
     marginTop: 12,
   },
   emptySubtext: {
     fontSize: 13,
-    color: '#444',
+    color: t.textTertiary,
     marginTop: 4,
   },
 
@@ -581,7 +582,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   sendButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 18,
     fontWeight: '700',
   },

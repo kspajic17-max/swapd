@@ -18,6 +18,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { supabase } from '../lib/supabase';
+import { t } from '../app/theme';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const CARD_GAP = 10;
@@ -508,7 +509,7 @@ export default function HomeScreen({ navigation }) {
               <Image source={{ uri: myItem.coverImage }} style={styles.swapItemImage} resizeMode="cover" />
             ) : (
               <View style={styles.swapItemImagePlaceholder}>
-                <Ionicons name="image-outline" size={24} color="#444" />
+                <Ionicons name="image-outline" size={24} color={t.textTertiary} />
               </View>
             )}
             <Text style={styles.swapItemTitle} numberOfLines={1}>{myItem.title}</Text>
@@ -519,7 +520,7 @@ export default function HomeScreen({ navigation }) {
           {/* Swap icon (center) */}
           <View style={styles.swapIconContainer}>
             <View style={styles.swapIconCircle}>
-              <Ionicons name="swap-horizontal" size={20} color="#fff" />
+              <Ionicons name="swap-horizontal" size={20} color={t.textWhite} />
             </View>
           </View>
 
@@ -533,7 +534,7 @@ export default function HomeScreen({ navigation }) {
               <Image source={{ uri: theirItem.coverImage }} style={styles.swapItemImage} resizeMode="cover" />
             ) : (
               <View style={styles.swapItemImagePlaceholder}>
-                <Ionicons name="image-outline" size={24} color="#444" />
+                <Ionicons name="image-outline" size={24} color={t.textTertiary} />
               </View>
             )}
             <Text style={styles.swapItemTitle} numberOfLines={1}>{theirItem.title}</Text>
@@ -561,7 +562,7 @@ export default function HomeScreen({ navigation }) {
           activeOpacity={0.8}
           onPress={() => navigation.navigate('SwapOffer', { listing: theirItem })}
         >
-          <Ionicons name="swap-horizontal" size={16} color="#fff" style={{ marginRight: 6 }} />
+          <Ionicons name="swap-horizontal" size={16} color={t.textWhite} style={{ marginRight: 6 }} />
           <Text style={styles.swapOfferButtonText}>Make Offer</Text>
         </TouchableOpacity>
       </View>
@@ -601,11 +602,11 @@ export default function HomeScreen({ navigation }) {
           activeOpacity={0.8}
           onPress={() => navigation.navigate('CreateListing')}
         >
-          <Ionicons name="sparkles" size={16} color="#FF6B6B" />
+          <Ionicons name="sparkles" size={16} color={t.coral} />
           <Text style={styles.engageBannerText}>
             Get personalized picks — post items to your closet!
           </Text>
-          <Ionicons name="chevron-forward" size={16} color="#666" />
+          <Ionicons name="chevron-forward" size={16} color={t.textTertiary} />
         </TouchableOpacity>
       )}
     </View>
@@ -620,7 +621,7 @@ export default function HomeScreen({ navigation }) {
       {!hasCloset && (
         <View style={styles.forYouEmptyContainer}>
           <View style={styles.forYouEmptyIconWrap}>
-            <Ionicons name="sparkles" size={40} color="#FF6B6B" />
+            <Ionicons name="sparkles" size={40} color={t.coral} />
           </View>
           <Text style={styles.forYouEmptyTitle}>Your personalized feed awaits</Text>
           <Text style={styles.forYouEmptySubtitle}>
@@ -631,7 +632,7 @@ export default function HomeScreen({ navigation }) {
             activeOpacity={0.8}
             onPress={() => navigation.navigate('CreateListing')}
           >
-            <Ionicons name="add-circle-outline" size={18} color="#fff" style={{ marginRight: 6 }} />
+            <Ionicons name="add-circle-outline" size={18} color={t.textWhite} style={{ marginRight: 6 }} />
             <Text style={styles.forYouEmptyButtonText}>Add to Your Closet</Text>
           </TouchableOpacity>
         </View>
@@ -642,7 +643,7 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.featuredSection}>
           <View style={styles.featuredHeaderRow}>
             <View style={styles.featuredBadge}>
-              <Ionicons name="star" size={12} color="#fff" />
+              <Ionicons name="star" size={12} color={t.textWhite} />
             </View>
             <Text style={styles.featuredHeaderTitle}>Suggested by swapd</Text>
           </View>
@@ -677,7 +678,7 @@ export default function HomeScreen({ navigation }) {
                         <Image source={{ uri: myItem.coverImage }} style={styles.swapItemImage} resizeMode="cover" />
                       ) : (
                         <View style={styles.swapItemImagePlaceholder}>
-                          <Ionicons name="image-outline" size={24} color="#444" />
+                          <Ionicons name="image-outline" size={24} color={t.textTertiary} />
                         </View>
                       )}
                       <Text style={styles.swapItemTitle} numberOfLines={1}>{myItem.title}</Text>
@@ -700,7 +701,7 @@ export default function HomeScreen({ navigation }) {
                         <Image source={{ uri: theirItem.coverImage }} style={styles.swapItemImage} resizeMode="cover" />
                       ) : (
                         <View style={styles.swapItemImagePlaceholder}>
-                          <Ionicons name="image-outline" size={24} color="#444" />
+                          <Ionicons name="image-outline" size={24} color={t.textTertiary} />
                         </View>
                       )}
                       <Text style={styles.swapItemTitle} numberOfLines={1}>{theirItem.title}</Text>
@@ -728,7 +729,7 @@ export default function HomeScreen({ navigation }) {
       {hasCloset && swapMatches.length > 0 && (
         <View style={styles.swapMatchesSection}>
           <View style={styles.sectionHeaderRow}>
-            <Ionicons name="swap-horizontal" size={18} color="#FF6B6B" />
+            <Ionicons name="swap-horizontal" size={18} color={t.coral} />
             <Text style={styles.sectionHeaderTitle}>Swap Matches</Text>
           </View>
           <Text style={styles.sectionHeaderSubtitle}>Trades that could work for both sides</Text>
@@ -766,7 +767,7 @@ export default function HomeScreen({ navigation }) {
                   <Image source={{ uri: user.avatarUrl }} style={styles.similarAvatar} />
                 ) : (
                   <View style={styles.similarAvatarPlaceholder}>
-                    <Ionicons name="person" size={20} color="#666" />
+                    <Ionicons name="person" size={20} color={t.textTertiary} />
                   </View>
                 )}
                 <Text style={styles.similarUsername} numberOfLines={1}>
@@ -781,7 +782,7 @@ export default function HomeScreen({ navigation }) {
       {/* Section 2 header: Items You'd Love */}
       {hasCloset && forYouListings.length > 0 && (
         <View style={styles.forYouSubheader}>
-          <Ionicons name="sparkles" size={14} color="#FF6B6B" />
+          <Ionicons name="sparkles" size={14} color={t.coral} />
           <Text style={styles.forYouSubheaderText}>Items You'd Love</Text>
         </View>
       )}
@@ -796,11 +797,11 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.brandText}>swapd</Text>
       </View>
       <View style={styles.searchContainer}>
-        <Ionicons name="search" size={18} color="#666" style={styles.searchIcon} />
+        <Ionicons name="search" size={18} color={t.textTertiary} style={styles.searchIcon} />
         <TextInput
           style={styles.searchInput}
           placeholder="Search listings..."
-          placeholderTextColor="#666"
+          placeholderTextColor={t.textTertiary}
           editable={true}
           value={searchText}
           onChangeText={setSearchText}
@@ -812,7 +813,7 @@ export default function HomeScreen({ navigation }) {
             onPress={() => setSearchText('')}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Ionicons name="close-circle" size={18} color="#666" />
+            <Ionicons name="close-circle" size={18} color={t.textTertiary} />
           </TouchableOpacity>
         )}
       </View>
@@ -852,7 +853,7 @@ export default function HomeScreen({ navigation }) {
     if (debouncedSearch) {
       return (
         <View style={styles.emptyContainer}>
-          <Ionicons name="search-outline" size={64} color="#333" />
+          <Ionicons name="search-outline" size={64} color={t.textTertiary} />
           <Text style={styles.emptyTitle}>No results for '{debouncedSearch}'</Text>
           <Text style={styles.emptySubtitle}>Try a different search term</Text>
         </View>
@@ -860,7 +861,7 @@ export default function HomeScreen({ navigation }) {
     }
     return (
       <View style={styles.emptyContainer}>
-        <Ionicons name="shirt-outline" size={64} color="#333" />
+        <Ionicons name="shirt-outline" size={64} color={t.textTertiary} />
         <Text style={styles.emptyTitle}>No listings yet</Text>
         <Text style={styles.emptySubtitle}>Be the first to post!</Text>
       </View>
@@ -872,7 +873,7 @@ export default function HomeScreen({ navigation }) {
     if (debouncedSearch) {
       return (
         <View style={styles.emptyContainer}>
-          <Ionicons name="search-outline" size={64} color="#333" />
+          <Ionicons name="search-outline" size={64} color={t.textTertiary} />
           <Text style={styles.emptyTitle}>No results for '{debouncedSearch}'</Text>
           <Text style={styles.emptySubtitle}>Try a different search term</Text>
         </View>
@@ -880,7 +881,7 @@ export default function HomeScreen({ navigation }) {
     }
     return (
       <View style={styles.emptyContainer}>
-        <Ionicons name="search-outline" size={64} color="#333" />
+        <Ionicons name="search-outline" size={64} color={t.textTertiary} />
         <Text style={styles.emptyTitle}>No matches yet</Text>
         <Text style={styles.emptySubtitle}>Check back as more people post!</Text>
       </View>
@@ -897,7 +898,7 @@ export default function HomeScreen({ navigation }) {
         <Image source={{ uri: item.coverImage }} style={styles.cardImage} resizeMode="cover" />
       ) : (
         <View style={styles.cardImagePlaceholder}>
-          <Ionicons name="image-outline" size={36} color="#444" />
+          <Ionicons name="image-outline" size={36} color={t.textTertiary} />
         </View>
       )}
       <View style={styles.cardBody}>
@@ -921,7 +922,7 @@ export default function HomeScreen({ navigation }) {
             <Image source={{ uri: item.avatarUrl }} style={styles.avatarMini} />
           ) : (
             <View style={styles.avatarMiniPlaceholder}>
-              <Ionicons name="person" size={10} color="#666" />
+              <Ionicons name="person" size={10} color={t.textTertiary} />
             </View>
           )}
           <Text style={styles.cardUsername} numberOfLines={1}>
@@ -932,7 +933,7 @@ export default function HomeScreen({ navigation }) {
       {/* Score badge for For You tab */}
       {activeTab === 'For You' && item._score > 0 && (
         <View style={styles.matchBadge}>
-          <Ionicons name="sparkles" size={10} color="#fff" />
+          <Ionicons name="sparkles" size={10} color={t.textWhite} />
         </View>
       )}
     </TouchableOpacity>
@@ -952,14 +953,14 @@ export default function HomeScreen({ navigation }) {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#FF6B6B" />
+        <ActivityIndicator size="large" color={t.coral} />
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="dark-content" backgroundColor={t.background} />
       <FlatList
         data={displayData}
         renderItem={renderListingCard}
@@ -1002,18 +1003,18 @@ function getValueMatchLabel(myValue, theirValue, tradeType, valueDiff) {
   } else if (tradeType === 'bundle') {
     return { text: `$${myValue} \u2194 $${theirValue}`, hint: 'Try a bundle offer', color: '#FFA726' };
   } else {
-    return { text: `$${myValue} \u2194 $${theirValue}`, hint: '', color: '#888' };
+    return { text: `$${myValue} \u2194 $${theirValue}`, hint: '', color: t.textTertiary };
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   loadingContainer: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -1035,7 +1036,7 @@ const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 10,
     marginHorizontal: CARD_GAP,
     marginTop: 10,
@@ -1047,7 +1048,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flex: 1,
-    color: '#fff',
+    color: t.text,
     fontSize: 15,
   },
 
@@ -1059,7 +1060,7 @@ const styles = StyleSheet.create({
   },
   tabToggleTrack: {
     flexDirection: 'row',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 24,
     padding: 3,
   },
@@ -1077,10 +1078,10 @@ const styles = StyleSheet.create({
   tabToggleText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#777',
+    color: t.textTertiary,
   },
   tabToggleTextActive: {
-    color: '#fff',
+    color: t.text,
   },
 
   /* Category chips */
@@ -1094,26 +1095,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 7,
     borderRadius: 20,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     marginRight: 0,
   },
   chipActive: {
     backgroundColor: '#FF6B6B',
   },
   chipText: {
-    color: '#999',
+    color: t.textTertiary,
     fontSize: 13,
     fontWeight: '600',
   },
   chipTextActive: {
-    color: '#fff',
+    color: t.text,
   },
 
   /* Engagement banner (Discover tab, no closet) */
   engageBanner: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     marginHorizontal: CARD_GAP,
     marginBottom: 8,
     paddingHorizontal: 14,
@@ -1125,7 +1126,7 @@ const styles = StyleSheet.create({
   },
   engageBannerText: {
     flex: 1,
-    color: '#bbb',
+    color: t.textSecondary,
     fontSize: 13,
     fontWeight: '500',
   },
@@ -1147,14 +1148,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   forYouEmptyTitle: {
-    color: '#fff',
+    color: t.text,
     fontSize: 20,
     fontWeight: '700',
     marginBottom: 8,
     textAlign: 'center',
   },
   forYouEmptySubtitle: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 15,
     textAlign: 'center',
     lineHeight: 22,
@@ -1169,7 +1170,7 @@ const styles = StyleSheet.create({
     borderRadius: 28,
   },
   forYouEmptyButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 16,
     fontWeight: '700',
   },
@@ -1200,7 +1201,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   featuredHeaderSubtitle: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 13,
     paddingHorizontal: CARD_GAP,
     marginTop: 2,
@@ -1239,11 +1240,11 @@ const styles = StyleSheet.create({
   sectionHeaderTitle: {
     fontSize: 18,
     fontWeight: '800',
-    color: '#fff',
+    color: t.text,
   },
   sectionHeaderSubtitle: {
     fontSize: 13,
-    color: '#888',
+    color: t.textTertiary,
     paddingHorizontal: CARD_GAP,
     marginBottom: 14,
   },
@@ -1253,7 +1254,7 @@ const styles = StyleSheet.create({
   },
   swapCard: {
     width: SWAP_CARD_WIDTH,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 16,
     padding: 14,
     borderWidth: 1,
@@ -1271,18 +1272,18 @@ const styles = StyleSheet.create({
     width: '100%',
     aspectRatio: 0.8,
     borderRadius: 10,
-    backgroundColor: '#111',
+    backgroundColor: t.placeholder,
   },
   swapItemImagePlaceholder: {
     width: '100%',
     aspectRatio: 0.8,
     borderRadius: 10,
-    backgroundColor: '#111',
+    backgroundColor: t.placeholder,
     alignItems: 'center',
     justifyContent: 'center',
   },
   swapItemTitle: {
-    color: '#fff',
+    color: t.text,
     fontSize: 13,
     fontWeight: '600',
     marginTop: 8,
@@ -1295,13 +1296,13 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   swapYourLabel: {
-    color: '#666',
+    color: t.textTertiary,
     fontSize: 11,
     fontWeight: '500',
     marginTop: 2,
   },
   swapTheirLabel: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 11,
     fontWeight: '500',
     marginTop: 2,
@@ -1331,7 +1332,7 @@ const styles = StyleSheet.create({
     borderTopColor: '#252525',
   },
   swapValueText: {
-    color: '#ccc',
+    color: t.textSecondary,
     fontSize: 13,
     fontWeight: '600',
   },
@@ -1355,7 +1356,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   swapOfferButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 15,
     fontWeight: '700',
   },
@@ -1385,7 +1386,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#252525',
+    backgroundColor: t.card,
     borderWidth: 2,
     borderColor: '#FF6B6B50',
   },
@@ -1393,14 +1394,14 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
     borderColor: '#FF6B6B50',
   },
   similarUsername: {
-    color: '#ccc',
+    color: t.textSecondary,
     fontSize: 11,
     fontWeight: '500',
     marginTop: 6,
@@ -1417,7 +1418,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   forYouSubheaderText: {
-    color: '#999',
+    color: t.textTertiary,
     fontSize: 13,
     fontWeight: '600',
   },
@@ -1448,19 +1449,19 @@ const styles = StyleSheet.create({
   /* Card */
   card: {
     width: CARD_WIDTH,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     overflow: 'hidden',
   },
   cardImage: {
     width: '100%',
     height: CARD_IMAGE_HEIGHT,
-    backgroundColor: '#111',
+    backgroundColor: t.placeholder,
   },
   cardImagePlaceholder: {
     width: '100%',
     height: CARD_IMAGE_HEIGHT,
-    backgroundColor: '#111',
+    backgroundColor: t.placeholder,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -1468,7 +1469,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   cardTitle: {
-    color: '#fff',
+    color: t.text,
     fontSize: 14,
     fontWeight: '600',
     marginBottom: 4,
@@ -1480,17 +1481,17 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   cardSize: {
-    color: '#aaa',
+    color: t.textTertiary,
     fontSize: 12,
     fontWeight: '500',
-    backgroundColor: '#252525',
+    backgroundColor: t.card,
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 4,
     overflow: 'hidden',
   },
   cardBrand: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 12,
     flexShrink: 1,
   },
@@ -1503,18 +1504,18 @@ const styles = StyleSheet.create({
     width: 16,
     height: 16,
     borderRadius: 8,
-    backgroundColor: '#252525',
+    backgroundColor: t.card,
   },
   avatarMiniPlaceholder: {
     width: 16,
     height: 16,
     borderRadius: 8,
-    backgroundColor: '#252525',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
   },
   cardUsername: {
-    color: '#777',
+    color: t.textTertiary,
     fontSize: 12,
     flexShrink: 1,
   },
@@ -1526,13 +1527,13 @@ const styles = StyleSheet.create({
     paddingTop: 100,
   },
   emptyTitle: {
-    color: '#fff',
+    color: t.text,
     fontSize: 18,
     fontWeight: '600',
     marginTop: 16,
   },
   emptySubtitle: {
-    color: '#666',
+    color: t.textTertiary,
     fontSize: 14,
     marginTop: 6,
   },

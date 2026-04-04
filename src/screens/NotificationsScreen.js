@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback } import { t } from '../app/theme';
+import 'react';
 import {
   View,
   Text,
@@ -276,7 +277,7 @@ export default function NotificationsScreen({ navigation }) {
           <Text style={styles.cardText}>{item.text}</Text>
           <Text style={styles.cardTime}>{formatRelativeTime(item.created_at)}</Text>
         </View>
-        <Ionicons name="chevron-forward" size={16} color="#333" />
+        <Ionicons name="chevron-forward" size={16} color={t.textTertiary} />
       </TouchableOpacity>
     );
   };
@@ -284,7 +285,7 @@ export default function NotificationsScreen({ navigation }) {
   if (loading) {
     return (
       <View style={[styles.container, styles.centered]}>
-        <ActivityIndicator size="large" color="#FF6B6B" />
+        <ActivityIndicator size="large" color={t.coral} />
       </View>
     );
   }
@@ -314,7 +315,7 @@ export default function NotificationsScreen({ navigation }) {
         }
         ListEmptyComponent={
           <View style={styles.emptyState}>
-            <Ionicons name="notifications-off-outline" size={48} color="#333" />
+            <Ionicons name="notifications-off-outline" size={48} color={t.textTertiary} />
             <Text style={styles.emptyTitle}>No activity yet</Text>
             <Text style={styles.emptySubtitle}>
               When someone interacts with your listings or sends you a message, it will show up here
@@ -329,7 +330,7 @@ export default function NotificationsScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   centered: {
     justifyContent: 'center',
@@ -339,12 +340,12 @@ const styles = StyleSheet.create({
     paddingTop: 56,
     paddingBottom: 12,
     paddingHorizontal: 20,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   headerTitle: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#fff',
+    color: t.text,
   },
   listContent: {
     paddingHorizontal: 16,
@@ -358,13 +359,13 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 14,
     padding: 14,
     marginBottom: 10,
     borderLeftWidth: 3,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   iconContainer: {
     width: 40,
@@ -380,12 +381,12 @@ const styles = StyleSheet.create({
   },
   cardText: {
     fontSize: 14,
-    color: '#ccc',
+    color: t.textSecondary,
     lineHeight: 20,
   },
   cardTime: {
     fontSize: 12,
-    color: '#555',
+    color: t.textTertiary,
     marginTop: 4,
   },
   emptyState: {
@@ -395,12 +396,12 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#555',
+    color: t.textTertiary,
     marginTop: 16,
   },
   emptySubtitle: {
     fontSize: 14,
-    color: '#444',
+    color: t.textTertiary,
     textAlign: 'center',
     marginTop: 8,
     lineHeight: 20,

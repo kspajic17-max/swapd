@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } import { t } from '../app/theme';
+import 'react';
 import {
   View,
   Text,
@@ -340,13 +341,13 @@ export default function SwapOfferScreen({ navigation, route }) {
           <Image source={{ uri: item.coverImage }} style={styles.gridImage} />
         ) : (
           <View style={[styles.gridImage, styles.placeholderImage]}>
-            <Ionicons name="image-outline" size={20} color="#555" />
+            <Ionicons name="image-outline" size={20} color={t.textTertiary} />
           </View>
         )}
         {isSelected && (
           <View style={styles.checkOverlay}>
             <View style={styles.checkCircle}>
-              <Ionicons name="checkmark" size={18} color="#fff" />
+              <Ionicons name="checkmark" size={18} color={t.textWhite} />
             </View>
           </View>
         )}
@@ -376,7 +377,7 @@ export default function SwapOfferScreen({ navigation, route }) {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#fff" />
+          <Ionicons name="arrow-back" size={24} color={t.textWhite} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Propose a Swap</Text>
         <View style={{ width: 40 }} />
@@ -395,7 +396,7 @@ export default function SwapOfferScreen({ navigation, route }) {
             <Image source={{ uri: targetImage }} style={styles.targetImage} />
           ) : (
             <View style={[styles.targetImage, styles.placeholderImage]}>
-              <Ionicons name="image-outline" size={24} color="#555" />
+              <Ionicons name="image-outline" size={24} color={t.textTertiary} />
             </View>
           )}
           <View style={styles.targetInfo}>
@@ -423,7 +424,7 @@ export default function SwapOfferScreen({ navigation, route }) {
               <Text style={styles.valueBarAmount}>${myTotal}</Text>
             </View>
             <View style={styles.valueBarCenter}>
-              <Ionicons name="swap-horizontal" size={18} color="#555" />
+              <Ionicons name="swap-horizontal" size={18} color={t.textTertiary} />
             </View>
             <View style={[styles.valueBarSide, { alignItems: 'flex-end' }]}>
               <Text style={styles.valueBarLabel}>Their item</Text>
@@ -444,10 +445,10 @@ export default function SwapOfferScreen({ navigation, route }) {
         )}
 
         {loading ? (
-          <ActivityIndicator size="large" color="#FF6B6B" style={{ marginTop: 30 }} />
+          <ActivityIndicator size="large" color={t.coral} style={{ marginTop: 30 }} />
         ) : myListings.length === 0 ? (
           <View style={styles.emptyState}>
-            <Ionicons name="shirt-outline" size={40} color="#333" />
+            <Ionicons name="shirt-outline" size={40} color={t.textTertiary} />
             <Text style={styles.emptyText}>Your closet is empty</Text>
             <Text style={styles.emptySubtext}>List some items first to start swapping</Text>
           </View>
@@ -503,7 +504,7 @@ export default function SwapOfferScreen({ navigation, route }) {
         {showCashSection && (
           <View style={styles.cashSection}>
             <View style={styles.cashHeader}>
-              <Ionicons name="cash-outline" size={20} color="#FF6B6B" />
+              <Ionicons name="cash-outline" size={20} color={t.coral} />
               <Text style={styles.cashTitle}>Add cash to even it out</Text>
             </View>
             <Text style={styles.cashHint}>
@@ -514,7 +515,7 @@ export default function SwapOfferScreen({ navigation, route }) {
               <TextInput
                 style={styles.cashInput}
                 placeholder="0"
-                placeholderTextColor="#555"
+                placeholderTextColor={t.textTertiary}
                 keyboardType="numeric"
                 value={cashAmount}
                 onChangeText={setCashAmount}
@@ -528,7 +529,7 @@ export default function SwapOfferScreen({ navigation, route }) {
         <TextInput
           style={[styles.input, styles.messageInput]}
           placeholder="Say something nice..."
-          placeholderTextColor="#555"
+          placeholderTextColor={t.textTertiary}
           value={message}
           onChangeText={setMessage}
           multiline
@@ -548,7 +549,7 @@ export default function SwapOfferScreen({ navigation, route }) {
           activeOpacity={0.8}
           disabled={sending || selectedIds.length === 0}
         >
-          <Ionicons name="paper-plane-outline" size={20} color="#fff" style={{ marginRight: 8 }} />
+          <Ionicons name="paper-plane-outline" size={20} color={t.textWhite} style={{ marginRight: 8 }} />
           <Text style={styles.sendButtonText}>
             {sending
               ? 'Sending...'
@@ -567,7 +568,7 @@ export default function SwapOfferScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   header: {
     flexDirection: 'row',
@@ -576,9 +577,9 @@ const styles = StyleSheet.create({
     paddingTop: 56,
     paddingBottom: 12,
     paddingHorizontal: 16,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: t.separator,
   },
   backButton: {
     width: 40,
@@ -589,7 +590,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
   },
   scrollView: {
     flex: 1,
@@ -604,7 +605,7 @@ const styles = StyleSheet.create({
   sectionLabel: {
     fontSize: 13,
     fontWeight: '700',
-    color: '#666',
+    color: t.textTertiary,
     textTransform: 'uppercase',
     letterSpacing: 1,
     marginTop: 22,
@@ -612,7 +613,7 @@ const styles = StyleSheet.create({
   },
   sectionHint: {
     fontSize: 13,
-    color: '#888',
+    color: t.textTertiary,
     marginTop: -6,
     marginBottom: 12,
     fontWeight: '500',
@@ -621,11 +622,11 @@ const styles = StyleSheet.create({
   // Target listing card — compact
   targetCard: {
     flexDirection: 'row',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 14,
     padding: 10,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   targetImage: {
     width: 60,
@@ -640,7 +641,7 @@ const styles = StyleSheet.create({
   targetTitle: {
     fontSize: 15,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
     marginBottom: 2,
   },
   targetMeta: {
@@ -649,7 +650,7 @@ const styles = StyleSheet.create({
   },
   targetMetaText: {
     fontSize: 12,
-    color: '#888',
+    color: t.textTertiary,
     fontWeight: '500',
   },
   metaDot: {
@@ -667,7 +668,7 @@ const styles = StyleSheet.create({
   },
 
   placeholderImage: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -676,12 +677,12 @@ const styles = StyleSheet.create({
   valueBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     padding: 12,
     marginTop: 12,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   valueBarSide: {
     flex: 1,
@@ -691,7 +692,7 @@ const styles = StyleSheet.create({
   },
   valueBarLabel: {
     fontSize: 11,
-    color: '#666',
+    color: t.textTertiary,
     fontWeight: '600',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
@@ -700,7 +701,7 @@ const styles = StyleSheet.create({
   valueBarAmount: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
   },
   diffRow: {
     alignItems: 'center',
@@ -768,7 +769,7 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
   },
   matchBadgeText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 9,
     fontWeight: '700',
     textTransform: 'uppercase',
@@ -777,13 +778,13 @@ const styles = StyleSheet.create({
   gridTitle: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#ddd',
+    color: t.textSecondary,
     marginTop: 6,
     paddingHorizontal: 2,
   },
   gridMeta: {
     fontSize: 11,
-    color: '#666',
+    color: t.textTertiary,
     paddingHorizontal: 2,
     marginTop: 1,
   },
@@ -803,25 +804,25 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#555',
+    color: t.textTertiary,
     marginTop: 12,
   },
   emptySubtext: {
     fontSize: 13,
-    color: '#444',
+    color: t.textTertiary,
     marginTop: 4,
   },
 
   // Input
   input: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 12,
     fontSize: 15,
-    color: '#fff',
+    color: t.text,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   messageInput: {
     minHeight: 56,
@@ -831,7 +832,7 @@ const styles = StyleSheet.create({
   // Cash section
   cashSection: {
     marginTop: 22,
-    backgroundColor: '#121216',
+    backgroundColor: t.cardAlt,
     borderRadius: 14,
     padding: 16,
     borderWidth: 1,
@@ -846,11 +847,11 @@ const styles = StyleSheet.create({
   cashTitle: {
     fontSize: 15,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
   },
   cashHint: {
     fontSize: 13,
-    color: '#888',
+    color: t.textTertiary,
     marginBottom: 12,
     marginLeft: 28,
   },
@@ -860,20 +861,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#1a1a1e',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
     paddingHorizontal: 14,
   },
   dollarSign: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#777',
+    color: t.textTertiary,
     marginRight: 4,
   },
   cashInput: {
     flex: 1,
     paddingVertical: 12,
     fontSize: 16,
-    color: '#fff',
+    color: t.text,
   },
 
   // Fixed bottom bar
@@ -881,9 +882,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 10,
     paddingBottom: 34,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     borderTopWidth: 1,
-    borderTopColor: '#1a1a1a',
+    borderTopColor: t.separator,
   },
   sendButton: {
     backgroundColor: '#FF6B6B',
@@ -897,7 +898,7 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
   sendButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 16,
     fontWeight: '700',
   },

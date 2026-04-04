@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState } import { t } from '../app/theme';
+import 'react';
 import {
   View,
   Text,
@@ -84,7 +85,7 @@ export default function EditProfileScreen({ navigation, route }) {
           onPress={() => navigation.goBack()}
           activeOpacity={0.7}
         >
-          <Ionicons name="arrow-back" size={24} color="#fff" />
+          <Ionicons name="arrow-back" size={24} color={t.textWhite} />
         </TouchableOpacity>
 
         <Text style={styles.screenTitle}>Edit Profile</Text>
@@ -94,7 +95,7 @@ export default function EditProfileScreen({ navigation, route }) {
         <TextInput
           style={styles.input}
           placeholder="Your name"
-          placeholderTextColor="#555"
+          placeholderTextColor={t.textTertiary}
           value={displayName}
           onChangeText={setDisplayName}
         />
@@ -103,7 +104,7 @@ export default function EditProfileScreen({ navigation, route }) {
         <TextInput
           style={[styles.input, styles.multilineInput]}
           placeholder="Tell swappers about yourself..."
-          placeholderTextColor="#555"
+          placeholderTextColor={t.textTertiary}
           value={bio}
           onChangeText={setBio}
           multiline
@@ -115,7 +116,7 @@ export default function EditProfileScreen({ navigation, route }) {
         <TextInput
           style={styles.input}
           placeholder="e.g. New York, NY"
-          placeholderTextColor="#555"
+          placeholderTextColor={t.textTertiary}
           value={location}
           onChangeText={setLocation}
         />
@@ -123,7 +124,7 @@ export default function EditProfileScreen({ navigation, route }) {
         {/* What You're Looking For */}
         <View style={styles.lookingForSection}>
           <View style={styles.lookingForHeader}>
-            <Ionicons name="search" size={20} color="#FF6B6B" />
+            <Ionicons name="search" size={20} color={t.coral} />
             <Text style={styles.lookingForTitle}>What You're Looking For</Text>
           </View>
           <Text style={styles.lookingForSubtitle}>
@@ -134,7 +135,7 @@ export default function EditProfileScreen({ navigation, route }) {
           <TextInput
             style={[styles.inputLight, styles.multilineInput]}
             placeholder="e.g. oversized leather jacket, size small tops, neutral boots..."
-            placeholderTextColor="#555"
+            placeholderTextColor={t.textTertiary}
             value={lookingFor}
             onChangeText={setLookingFor}
             multiline
@@ -146,7 +147,7 @@ export default function EditProfileScreen({ navigation, route }) {
           <TextInput
             style={styles.inputLight}
             placeholder="e.g. any brands, Nike, Zara..."
-            placeholderTextColor="#555"
+            placeholderTextColor={t.textTertiary}
             value={openToBrands}
             onChangeText={setOpenToBrands}
           />
@@ -155,7 +156,7 @@ export default function EditProfileScreen({ navigation, route }) {
           <TextInput
             style={styles.inputLight}
             placeholder="e.g. fast fashion, damaged items..."
-            placeholderTextColor="#555"
+            placeholderTextColor={t.textTertiary}
             value={notInterestedIn}
             onChangeText={setNotInterestedIn}
           />
@@ -164,7 +165,7 @@ export default function EditProfileScreen({ navigation, route }) {
         {/* Payment Methods */}
         <View style={styles.paymentSection}>
           <View style={styles.lookingForHeader}>
-            <Ionicons name="cash-outline" size={20} color="#FF6B6B" />
+            <Ionicons name="cash-outline" size={20} color={t.coral} />
             <Text style={styles.lookingForTitle}>Payment Methods</Text>
           </View>
           <Text style={styles.lookingForSubtitle}>
@@ -175,7 +176,7 @@ export default function EditProfileScreen({ navigation, route }) {
           <TextInput
             style={styles.inputLight}
             placeholder="@your-venmo"
-            placeholderTextColor="#555"
+            placeholderTextColor={t.textTertiary}
             autoCapitalize="none"
             value={paymentVenmo}
             onChangeText={setPaymentVenmo}
@@ -185,7 +186,7 @@ export default function EditProfileScreen({ navigation, route }) {
           <TextInput
             style={styles.inputLight}
             placeholder="Phone or email"
-            placeholderTextColor="#555"
+            placeholderTextColor={t.textTertiary}
             autoCapitalize="none"
             value={paymentZelle}
             onChangeText={setPaymentZelle}
@@ -195,7 +196,7 @@ export default function EditProfileScreen({ navigation, route }) {
           <TextInput
             style={styles.inputLight}
             placeholder="$your-cashtag"
-            placeholderTextColor="#555"
+            placeholderTextColor={t.textTertiary}
             autoCapitalize="none"
             value={paymentCashapp}
             onChangeText={setPaymentCashapp}
@@ -210,7 +211,7 @@ export default function EditProfileScreen({ navigation, route }) {
           disabled={saving}
         >
           {saving ? (
-            <ActivityIndicator color="#fff" />
+            <ActivityIndicator color={t.textWhite} />
           ) : (
             <Text style={styles.saveButtonText}>Save Profile</Text>
           )}
@@ -225,7 +226,7 @@ export default function EditProfileScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   scrollView: {
     flex: 1,
@@ -238,7 +239,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 16,
@@ -246,7 +247,7 @@ const styles = StyleSheet.create({
   screenTitle: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#fff',
+    color: t.text,
     marginBottom: 24,
   },
 
@@ -254,21 +255,21 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#ccc',
+    color: t.textSecondary,
     marginBottom: 8,
     marginTop: 12,
   },
 
   // Inputs
   input: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 16,
-    color: '#fff',
+    color: t.text,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   multilineInput: {
     minHeight: 90,
@@ -278,7 +279,7 @@ const styles = StyleSheet.create({
   // Looking For section
   lookingForSection: {
     marginTop: 28,
-    backgroundColor: '#121216',
+    backgroundColor: t.cardAlt,
     borderRadius: 16,
     padding: 20,
     borderWidth: 1.5,
@@ -293,18 +294,18 @@ const styles = StyleSheet.create({
   lookingForTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
   },
   lookingForSubtitle: {
     fontSize: 13,
-    color: '#777',
+    color: t.textTertiary,
     marginBottom: 16,
     lineHeight: 18,
   },
   labelLight: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#ccc',
+    color: t.textSecondary,
     marginBottom: 8,
     marginTop: 10,
   },
@@ -314,15 +315,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 16,
-    color: '#fff',
+    color: t.text,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
 
   // Payment section
   paymentSection: {
     marginTop: 28,
-    backgroundColor: '#121216',
+    backgroundColor: t.cardAlt,
     borderRadius: 16,
     padding: 20,
     borderWidth: 1.5,
@@ -341,7 +342,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   saveButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 18,
     fontWeight: '700',
   },

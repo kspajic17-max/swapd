@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } import { t } from '../app/theme';
+import 'react';
 import {
   View,
   Text,
@@ -266,7 +267,7 @@ export default function SwapChatScreen({ navigation, route }) {
     return (
       <View style={styles.offerCard}>
         <View style={styles.offerCardHeader}>
-          <Ionicons name="swap-horizontal" size={16} color="#FF6B6B" />
+          <Ionicons name="swap-horizontal" size={16} color={t.coral} />
           <Text style={styles.offerCardTitle}>Swap Status</Text>
           <View
             style={[
@@ -310,7 +311,7 @@ export default function SwapChatScreen({ navigation, route }) {
   if (loading) {
     return (
       <View style={[styles.container, styles.centered]}>
-        <ActivityIndicator size="large" color="#FF6B6B" />
+        <ActivityIndicator size="large" color={t.coral} />
       </View>
     );
   }
@@ -330,7 +331,7 @@ export default function SwapChatScreen({ navigation, route }) {
           onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
-          <Ionicons name="arrow-back" size={24} color="#fff" />
+          <Ionicons name="arrow-back" size={24} color={t.textWhite} />
         </TouchableOpacity>
         <View style={styles.headerCenter}>
           {otherUser?.avatar_url ? (
@@ -367,7 +368,7 @@ export default function SwapChatScreen({ navigation, route }) {
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={
           <View style={styles.emptyChat}>
-            <Ionicons name="chatbubble-ellipses-outline" size={36} color="#333" />
+            <Ionicons name="chatbubble-ellipses-outline" size={36} color={t.textTertiary} />
             <Text style={styles.emptyChatText}>No messages yet</Text>
             <Text style={styles.emptyChatSubtext}>
               Ask a quick question about the item
@@ -393,9 +394,9 @@ export default function SwapChatScreen({ navigation, route }) {
             }
           }}
         >
-          <Ionicons name="swap-horizontal" size={16} color="#FF6B6B" style={{ marginRight: 6 }} />
+          <Ionicons name="swap-horizontal" size={16} color={t.coral} style={{ marginRight: 6 }} />
           <Text style={styles.sendOfferBarText}>Send Offer</Text>
-          <Ionicons name="chevron-forward" size={16} color="#FF6B6B" />
+          <Ionicons name="chevron-forward" size={16} color={t.coral} />
         </TouchableOpacity>
       )}
 
@@ -404,7 +405,7 @@ export default function SwapChatScreen({ navigation, route }) {
         <TextInput
           style={styles.textInput}
           placeholder="Message..."
-          placeholderTextColor="#555"
+          placeholderTextColor={t.textTertiary}
           value={inputText}
           onChangeText={setInputText}
           multiline
@@ -433,7 +434,7 @@ export default function SwapChatScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   centered: {
     justifyContent: 'center',
@@ -448,9 +449,9 @@ const styles = StyleSheet.create({
     paddingTop: 56,
     paddingBottom: 12,
     paddingHorizontal: 16,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: t.separator,
   },
   backButton: {
     width: 40,
@@ -481,7 +482,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 17,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
   },
 
   // Offer summary card
@@ -489,11 +490,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginTop: 12,
     marginBottom: 4,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     padding: 14,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   offerCardHeader: {
     flexDirection: 'row',
@@ -504,7 +505,7 @@ const styles = StyleSheet.create({
   offerCardTitle: {
     fontSize: 14,
     fontWeight: '700',
-    color: '#ccc',
+    color: t.textSecondary,
     flex: 1,
   },
   offerStatusBadge: {
@@ -527,7 +528,7 @@ const styles = StyleSheet.create({
   },
   offerItemText: {
     fontSize: 13,
-    color: '#888',
+    color: t.textTertiary,
     marginBottom: 2,
   },
   offerCashText: {
@@ -556,12 +557,12 @@ const styles = StyleSheet.create({
   emptyChatText: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#444',
+    color: t.textTertiary,
     marginTop: 10,
   },
   emptyChatSubtext: {
     fontSize: 13,
-    color: '#333',
+    color: t.textTertiary,
     marginTop: 4,
   },
 
@@ -605,20 +606,20 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 4,
   },
   messageBubbleThem: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderBottomLeftRadius: 4,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   messageText: {
     fontSize: 15,
     lineHeight: 20,
   },
   messageTextMe: {
-    color: '#fff',
+    color: t.text,
   },
   messageTextThem: {
-    color: '#ddd',
+    color: t.textSecondary,
   },
   messageTime: {
     fontSize: 10,
@@ -634,7 +635,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 16,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderTopWidth: 1,
     borderTopColor: '#2a2a2a',
   },
@@ -651,21 +652,21 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingBottom: Platform.OS === 'ios' ? 34 : 10,
     borderTopWidth: 1,
-    borderTopColor: '#1a1a1a',
-    backgroundColor: '#0a0a0a',
+    borderTopColor: t.separator,
+    backgroundColor: t.background,
     gap: 8,
   },
   textInput: {
     flex: 1,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 20,
     paddingHorizontal: 16,
     paddingVertical: 10,
     fontSize: 15,
-    color: '#fff',
+    color: t.text,
     maxHeight: 100,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   sendBtn: {
     width: 40,
@@ -676,6 +677,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   sendBtnDisabled: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
   },
 });

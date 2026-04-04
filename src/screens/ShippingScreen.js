@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } import { t } from '../app/theme';
+import 'react';
 import {
   View,
   Text,
@@ -231,7 +232,7 @@ export default function ShippingScreen({ navigation, route }) {
   if (loading) {
     return (
       <View style={[styles.container, styles.centered]}>
-        <ActivityIndicator size="large" color="#FF6B6B" />
+        <ActivityIndicator size="large" color={t.coral} />
       </View>
     );
   }
@@ -253,7 +254,7 @@ export default function ShippingScreen({ navigation, route }) {
           style={styles.backButton}
           activeOpacity={0.7}
         >
-          <Ionicons name="chevron-back" size={24} color="#fff" />
+          <Ionicons name="chevron-back" size={24} color={t.textWhite} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Shipping Details</Text>
         <View style={styles.headerSpacer} />
@@ -355,7 +356,7 @@ export default function ShippingScreen({ navigation, route }) {
                 disabled={saving}
               >
                 {saving ? (
-                  <ActivityIndicator size="small" color="#fff" />
+                  <ActivityIndicator size="small" color={t.textWhite} />
                 ) : (
                   <Text style={styles.saveButtonText}>Save Address</Text>
                 )}
@@ -402,7 +403,7 @@ export default function ShippingScreen({ navigation, route }) {
             </View>
           ) : (
             <View style={styles.waitingCard}>
-              <Ionicons name="hourglass-outline" size={20} color="#666" />
+              <Ionicons name="hourglass-outline" size={20} color={t.textTertiary} />
               <Text style={styles.waitingText}>
                 {myAddressFilled
                   ? `Waiting for @${otherUsername} to enter their address`
@@ -431,7 +432,7 @@ export default function ShippingScreen({ navigation, route }) {
                   onPress={handleSaveTracking}
                   activeOpacity={0.7}
                 >
-                  <Ionicons name="checkmark" size={18} color="#fff" />
+                  <Ionicons name="checkmark" size={18} color={t.textWhite} />
                 </TouchableOpacity>
               )}
             </View>
@@ -470,7 +471,7 @@ export default function ShippingScreen({ navigation, route }) {
             onPress={handleMarkShipped}
             activeOpacity={0.7}
           >
-            <Ionicons name="airplane" size={18} color="#fff" style={{ marginRight: 8 }} />
+            <Ionicons name="airplane" size={18} color={t.textWhite} style={{ marginRight: 8 }} />
             <Text style={styles.shippedButtonText}>I've Shipped</Text>
           </TouchableOpacity>
         )}
@@ -487,7 +488,7 @@ export default function ShippingScreen({ navigation, route }) {
               onPress={() => Alert.alert('Coming soon', 'Rating feature is coming soon!')}
               activeOpacity={0.7}
             >
-              <Ionicons name="star" size={16} color="#fff" style={{ marginRight: 6 }} />
+              <Ionicons name="star" size={16} color={t.textWhite} style={{ marginRight: 6 }} />
               <Text style={styles.rateButtonText}>Rate this swap</Text>
             </TouchableOpacity>
           </View>
@@ -500,7 +501,7 @@ export default function ShippingScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   centered: {
     alignItems: 'center',
@@ -513,15 +514,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingBottom: 12,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: t.separator,
   },
   backButton: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -529,7 +530,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
     textAlign: 'center',
   },
   headerSpacer: {
@@ -548,7 +549,7 @@ const styles = StyleSheet.create({
   statusCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 14,
     padding: 16,
     marginBottom: 14,
@@ -593,7 +594,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 15,
     fontWeight: '700',
-    color: '#ccc',
+    color: t.textSecondary,
     marginBottom: 12,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
@@ -607,7 +608,7 @@ const styles = StyleSheet.create({
 
   // Form
   formCard: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 14,
     padding: 16,
   },
@@ -615,7 +616,7 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   inputLabel: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 12,
     fontWeight: '600',
     marginBottom: 6,
@@ -623,14 +624,14 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   input: {
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     borderRadius: 10,
     paddingHorizontal: 14,
     paddingVertical: 12,
-    color: '#fff',
+    color: t.text,
     fontSize: 15,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   inputRow: {
     flexDirection: 'row',
@@ -643,7 +644,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   saveButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 16,
     fontWeight: '700',
   },
@@ -653,26 +654,26 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   cancelButtonText: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 14,
     fontWeight: '600',
   },
 
   // Address display
   addressDisplay: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 14,
     padding: 16,
   },
   addressText: {
-    color: '#ddd',
+    color: t.textSecondary,
     fontSize: 15,
     lineHeight: 22,
   },
 
   // Waiting
   waitingCard: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 14,
     padding: 20,
     flexDirection: 'row',
@@ -681,7 +682,7 @@ const styles = StyleSheet.create({
   },
   waitingText: {
     flex: 1,
-    color: '#777',
+    color: t.textTertiary,
     fontSize: 14,
     lineHeight: 20,
   },
@@ -710,7 +711,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   statusRowText: {
-    color: '#777',
+    color: t.textTertiary,
     fontSize: 15,
   },
   statusRowShipped: {
@@ -729,7 +730,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   shippedButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 17,
     fontWeight: '700',
   },
@@ -750,7 +751,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   completeSubtitle: {
-    color: '#999',
+    color: t.textTertiary,
     fontSize: 14,
     textAlign: 'center',
     lineHeight: 20,
@@ -765,7 +766,7 @@ const styles = StyleSheet.create({
     borderRadius: 24,
   },
   rateButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 15,
     fontWeight: '700',
   },

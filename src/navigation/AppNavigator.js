@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, View, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -7,9 +7,11 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Notifications from 'expo-notifications';
 import { supabase } from '../lib/supabase';
 import { registerForPushNotifications } from '../lib/notifications';
+import { t } from '../app/theme';
 
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
+import VerifyEmailScreen from '../screens/VerifyEmailScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import CreateListingScreen from '../screens/CreateListingScreen';
@@ -50,6 +52,7 @@ function AuthNavigator() {
     <AuthStack.Navigator screenOptions={{ headerShown: false }}>
       <AuthStack.Screen name="Login" component={LoginScreen} />
       <AuthStack.Screen name="SignUp" component={SignUpScreen} />
+      <AuthStack.Screen name="VerifyEmail" component={VerifyEmailScreen} />
     </AuthStack.Navigator>
   );
 }
@@ -91,7 +94,6 @@ function MainTabs({ initialTab = 'Home' }) {
 
   useEffect(() => {
     fetchBadgeCount();
-    // Refresh badge every 30 seconds
     const interval = setInterval(fetchBadgeCount, 30000);
     return () => clearInterval(interval);
   }, []);
@@ -101,29 +103,14 @@ function MainTabs({ initialTab = 'Home' }) {
       const { data: sessionData } = await supabase.auth.getSession();
       if (!sessionData?.session) return;
       const uid = sessionData.session.user.id;
-
-      // Count pending swap_interests on the user's listings
       const { data: myListings } = await supabase
-        .from('listings')
-        .select('id')
-        .eq('user_id', uid);
-
-      if (!myListings || myListings.length === 0) {
-        setBadgeCount(0);
-        return;
-      }
-
-      const myListingIds = myListings.map((l) => l.id);
+        .from('listings').select('id').eq('user_id', uid);
+      if (!myListings || myListings.length === 0) { setBadgeCount(0); return; }
       const { count } = await supabase
-        .from('swap_interests')
-        .select('id', { count: 'exact', head: true })
-        .in('listing_id', myListingIds)
-        .eq('status', 'pending');
-
+        .from('swap_interests').select('id', { count: 'exact', head: true })
+        .in('listing_id', myListings.map((l) => l.id)).eq('status', 'pending');
       setBadgeCount(count || 0);
-    } catch (err) {
-      // Silently fail
-    }
+    } catch (err) {}
   };
 
   return (
@@ -131,35 +118,28 @@ function MainTabs({ initialTab = 'Home' }) {
       initialRouteName={initialTab}
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarActiveTintColor: '#FF6B6B',
-        tabBarInactiveTintColor: '#555',
+        tabBarActiveTintColor: t.coral,
+        tabBarInactiveTintColor: t.textTertiary,
         tabBarStyle: {
-          backgroundColor: '#0a0a0a',
-          borderTopColor: '#1a1a1a',
+          backgroundColor: t.background,
+          borderTopColor: t.separator,
           borderTopWidth: 1,
+          paddingBottom: 6,
+          paddingTop: 6,
+          height: 80,
         },
         tabBarIcon: ({ color, size }) => {
           let iconName;
-          if (route.name === 'Home') {
-            iconName = 'home-outline';
-          } else if (route.name === 'Activity') {
-            iconName = 'notifications-outline';
-          } else if (route.name === 'CreateListing') {
-            iconName = 'add-circle-outline';
-          } else if (route.name === 'Swaps') {
-            iconName = 'chatbubbles-outline';
-          } else if (route.name === 'Profile') {
-            iconName = 'person-outline';
-          }
+          if (route.name === 'Home') iconName = 'home-outline';
+          else if (route.name === 'Activity') iconName = 'notifications-outline';
+          else if (route.name === 'CreateListing') iconName = 'add-circle-outline';
+          else if (route.name === 'Swaps') iconName = 'chatbubbles-outline';
+          else if (route.name === 'Profile') iconName = 'person-outline';
           return <Ionicons name={iconName} size={size} color={color} />;
         },
       })}
     >
-      <Tab.Screen
-        name="Home"
-        component={HomeStackNavigator}
-        options={{ tabBarLabel: 'Browse' }}
-      />
+      <Tab.Screen name="Home" component={HomeStackNavigator} options={{ tabBarLabel: 'Browse' }} />
       <Tab.Screen
         name="Activity"
         component={ActivityStackNavigator}
@@ -167,12 +147,8 @@ function MainTabs({ initialTab = 'Home' }) {
           tabBarLabel: 'Activity',
           tabBarBadge: badgeCount > 0 ? badgeCount : undefined,
           tabBarBadgeStyle: {
-            backgroundColor: '#FF6B6B',
-            fontSize: 10,
-            fontWeight: '700',
-            minWidth: 18,
-            height: 18,
-            lineHeight: 18,
+            backgroundColor: t.coral, fontSize: 10, fontWeight: '700',
+            minWidth: 18, height: 18, lineHeight: 18,
           },
         }}
       />
@@ -180,18 +156,10 @@ function MainTabs({ initialTab = 'Home' }) {
         name="CreateListing"
         component={CreateListingScreen}
         initialParams={{ showFirstItemToast: initialTab === 'CreateListing' }}
-        options={{ tabBarLabel: 'Sell' }}
+        options={{ tabBarLabel: 'List' }}
       />
-      <Tab.Screen
-        name="Swaps"
-        component={SwapsStackNavigator}
-        options={{ tabBarLabel: 'Swaps' }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={ProfileStackNavigator}
-        options={{ tabBarLabel: 'My Closet' }}
-      />
+      <Tab.Screen name="Swaps" component={SwapsStackNavigator} options={{ tabBarLabel: 'Swaps' }} />
+      <Tab.Screen name="Profile" component={ProfileStackNavigator} options={{ tabBarLabel: 'Closet' }} />
     </Tab.Navigator>
   );
 }
@@ -206,100 +174,52 @@ export default function AppNavigator() {
 
   const fetchOnboardingStatus = async (userId) => {
     try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('onboarding_complete')
-        .eq('id', userId)
-        .single();
-
-      if (error || !data) {
-        setOnboardingDone(false);
-      } else {
-        setOnboardingDone(data.onboarding_complete === true);
-      }
-    } catch {
-      setOnboardingDone(false);
-    }
+      const { data, error } = await supabase.from('profiles')
+        .select('onboarding_complete').eq('id', userId).single();
+      setOnboardingDone(error || !data ? false : data.onboarding_complete === true);
+    } catch { setOnboardingDone(false); }
   };
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      if (session) {
-        fetchOnboardingStatus(session.user.id);
-      } else {
-        setLoading(false);
-      }
+      if (session) fetchOnboardingStatus(session.user.id);
+      else setLoading(false);
     });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session);
-        if (session) {
-          fetchOnboardingStatus(session.user.id);
-        } else {
-          setOnboardingDone(null);
-        }
-      }
-    );
-
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      if (session) fetchOnboardingStatus(session.user.id);
+      else setOnboardingDone(null);
+    });
     return () => subscription.unsubscribe();
   }, []);
 
-  // Once onboarding status is resolved, stop loading
-  useEffect(() => {
-    if (session && onboardingDone !== null) {
-      setLoading(false);
-    }
-  }, [session, onboardingDone]);
+  useEffect(() => { if (session && onboardingDone !== null) setLoading(false); }, [session, onboardingDone]);
+  useEffect(() => { if (session) registerForPushNotifications(); }, [session]);
 
-  // Register for push notifications once session is confirmed
   useEffect(() => {
-    if (session) {
-      registerForPushNotifications();
-    }
-  }, [session]);
-
-  // Handle notification taps — navigate to Swaps tab
-  useEffect(() => {
-    // Handle taps when app is already open
-    notificationResponseRef.current =
-      Notifications.addNotificationResponseReceivedListener((response) => {
-        const data = response.notification.request.content.data;
-        if (navigationRef.current) {
-          if (data?.screen === 'SwapInbox') {
-            navigationRef.current.navigate('Swaps');
-          } else {
-            navigationRef.current.navigate('Swaps');
-          }
-        }
-      });
-
-    return () => {
-      if (notificationResponseRef.current) {
-        Notifications.removeNotificationSubscription(notificationResponseRef.current);
-      }
-    };
+    notificationResponseRef.current = Notifications.addNotificationResponseReceivedListener((response) => {
+      if (navigationRef.current) navigationRef.current.navigate('Swaps');
+    });
+    return () => { if (notificationResponseRef.current) Notifications.removeNotificationSubscription(notificationResponseRef.current); };
   }, []);
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0a0a0a' }}>
-        <ActivityIndicator size="large" color="#FF6B6B" />
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: t.background }}>
+        <ActivityIndicator size="large" color={t.coral} />
       </View>
     );
   }
 
   return (
     <NavigationContainer ref={navigationRef}>
+      <StatusBar barStyle="dark-content" backgroundColor={t.background} />
       {session ? (
         onboardingDone ? (
           <MainTabs initialTab={justFinishedOnboarding ? 'CreateListing' : 'Home'} />
         ) : (
-          <OnboardingScreen onComplete={() => {
-            setJustFinishedOnboarding(true);
-            setOnboardingDone(true);
-          }} />
+          <OnboardingScreen onComplete={() => { setJustFinishedOnboarding(true); setOnboardingDone(true); }} />
         )
       ) : (
         <AuthNavigator />

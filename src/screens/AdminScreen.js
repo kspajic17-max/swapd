@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } import { t } from '../app/theme';
+import 'react';
 import {
   View,
   Text,
@@ -390,8 +391,8 @@ export default function AdminScreen({ navigation }) {
   if (checking) {
     return (
       <View style={styles.centered}>
-        <StatusBar barStyle="light-content" />
-        <ActivityIndicator size="large" color="#FF6B6B" />
+        <StatusBar barStyle="dark-content" backgroundColor={t.background} />
+        <ActivityIndicator size="large" color={t.coral} />
       </View>
     );
   }
@@ -399,8 +400,8 @@ export default function AdminScreen({ navigation }) {
   if (!isAdmin) {
     return (
       <View style={styles.centered}>
-        <StatusBar barStyle="light-content" />
-        <Ionicons name="lock-closed" size={48} color="#333" />
+        <StatusBar barStyle="dark-content" backgroundColor={t.background} />
+        <Ionicons name="lock-closed" size={48} color={t.textTertiary} />
         <Text style={styles.deniedText}>Access denied</Text>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
           <Text style={styles.backBtnText}>Go Back</Text>
@@ -419,7 +420,7 @@ export default function AdminScreen({ navigation }) {
         <Image source={{ uri: item.avatar_url }} style={styles.userAvatar} />
       ) : (
         <View style={styles.userAvatarPlaceholder}>
-          <Ionicons name="person" size={20} color="#666" />
+          <Ionicons name="person" size={20} color={t.textTertiary} />
         </View>
       )}
       <View style={styles.userInfo}>
@@ -430,17 +431,17 @@ export default function AdminScreen({ navigation }) {
         <View style={styles.userMetaRow}>
           {item.location ? (
             <View style={styles.userMetaChip}>
-              <Ionicons name="location-sharp" size={11} color="#FF6B6B" />
+              <Ionicons name="location-sharp" size={11} color={t.coral} />
               <Text style={styles.userMetaText}>{item.location}</Text>
             </View>
           ) : null}
           <View style={styles.userMetaChip}>
-            <Ionicons name="shirt-outline" size={11} color="#888" />
+            <Ionicons name="shirt-outline" size={11} color={t.textTertiary} />
             <Text style={styles.userMetaText}>{item.itemCount} items</Text>
           </View>
         </View>
       </View>
-      <Ionicons name="chevron-forward" size={18} color="#444" />
+      <Ionicons name="chevron-forward" size={18} color={t.textTertiary} />
     </TouchableOpacity>
   );
 
@@ -456,7 +457,7 @@ export default function AdminScreen({ navigation }) {
             <Image source={{ uri: listing.coverImage }} style={styles.matchThumb} />
           ) : (
             <View style={styles.matchThumbPlaceholder}>
-              <Ionicons name="image-outline" size={18} color="#444" />
+              <Ionicons name="image-outline" size={18} color={t.textTertiary} />
             </View>
           )}
           <View style={styles.matchSourceInfo}>
@@ -477,14 +478,14 @@ export default function AdminScreen({ navigation }) {
           return (
             <View key={key} style={styles.matchRow}>
               <View style={styles.matchArrow}>
-                <Ionicons name="swap-horizontal" size={14} color="#FF6B6B" />
+                <Ionicons name="swap-horizontal" size={14} color={t.coral} />
                 <Text style={styles.matchScore}>{match.score}</Text>
               </View>
               {other.coverImage ? (
                 <Image source={{ uri: other.coverImage }} style={styles.matchThumbSmall} />
               ) : (
                 <View style={styles.matchThumbSmallPlaceholder}>
-                  <Ionicons name="image-outline" size={14} color="#444" />
+                  <Ionicons name="image-outline" size={14} color={t.textTertiary} />
                 </View>
               )}
               <View style={styles.matchRowInfo}>
@@ -498,7 +499,7 @@ export default function AdminScreen({ navigation }) {
                 onPress={() => handleSendSuggestion(listing, other, match.score)}
               >
                 {isSending ? (
-                  <ActivityIndicator size="small" color="#fff" />
+                  <ActivityIndicator size="small" color={t.textWhite} />
                 ) : (
                   <Text style={styles.suggestBtnText}>Send</Text>
                 )}
@@ -532,7 +533,7 @@ export default function AdminScreen({ navigation }) {
             <Image source={{ uri: item.avatar_url }} style={styles.pickerAvatar} />
           ) : (
             <View style={styles.pickerAvatarPlaceholder}>
-              <Ionicons name="person" size={16} color="#666" />
+              <Ionicons name="person" size={16} color={t.textTertiary} />
             </View>
           )}
           <Text style={styles.pickerItemText}>@{item.username || 'user'}</Text>
@@ -551,7 +552,7 @@ export default function AdminScreen({ navigation }) {
             <Image source={{ uri: item.coverImage }} style={styles.pickerThumb} />
           ) : (
             <View style={styles.pickerThumbPlaceholder}>
-              <Ionicons name="image-outline" size={14} color="#444" />
+              <Ionicons name="image-outline" size={14} color={t.textTertiary} />
             </View>
           )}
           <View style={{ flex: 1 }}>
@@ -567,7 +568,7 @@ export default function AdminScreen({ navigation }) {
         <View style={styles.pickerHeader}>
           <Text style={styles.pickerTitle}>{title}</Text>
           <TouchableOpacity onPress={() => { setPickingUser(null); setPickingListing(null); }}>
-            <Ionicons name="close" size={24} color="#fff" />
+            <Ionicons name="close" size={24} color={t.textWhite} />
           </TouchableOpacity>
         </View>
         <FlatList
@@ -599,7 +600,7 @@ export default function AdminScreen({ navigation }) {
               <Image source={{ uri: userA.avatar_url }} style={styles.manualPickerAvatar} />
             ) : (
               <View style={styles.manualPickerAvatarPlaceholder}>
-                <Ionicons name="person" size={14} color="#666" />
+                <Ionicons name="person" size={14} color={t.textTertiary} />
               </View>
             )}
             <Text style={styles.manualPickerText}>@{userA.username}</Text>
@@ -607,7 +608,7 @@ export default function AdminScreen({ navigation }) {
         ) : (
           <Text style={styles.manualPickerPlaceholder}>Tap to select User A</Text>
         )}
-        <Ionicons name="chevron-down" size={18} color="#666" />
+        <Ionicons name="chevron-down" size={18} color={t.textTertiary} />
       </TouchableOpacity>
 
       {/* Listing A */}
@@ -628,7 +629,7 @@ export default function AdminScreen({ navigation }) {
             ) : (
               <Text style={styles.manualPickerPlaceholder}>Tap to select a listing</Text>
             )}
-            <Ionicons name="chevron-down" size={18} color="#666" />
+            <Ionicons name="chevron-down" size={18} color={t.textTertiary} />
           </TouchableOpacity>
         </>
       )}
@@ -645,7 +646,7 @@ export default function AdminScreen({ navigation }) {
               <Image source={{ uri: userB.avatar_url }} style={styles.manualPickerAvatar} />
             ) : (
               <View style={styles.manualPickerAvatarPlaceholder}>
-                <Ionicons name="person" size={14} color="#666" />
+                <Ionicons name="person" size={14} color={t.textTertiary} />
               </View>
             )}
             <Text style={styles.manualPickerText}>@{userB.username}</Text>
@@ -653,7 +654,7 @@ export default function AdminScreen({ navigation }) {
         ) : (
           <Text style={styles.manualPickerPlaceholder}>Tap to select User B</Text>
         )}
-        <Ionicons name="chevron-down" size={18} color="#666" />
+        <Ionicons name="chevron-down" size={18} color={t.textTertiary} />
       </TouchableOpacity>
 
       {/* Listing B */}
@@ -674,7 +675,7 @@ export default function AdminScreen({ navigation }) {
             ) : (
               <Text style={styles.manualPickerPlaceholder}>Tap to select a listing</Text>
             )}
-            <Ionicons name="chevron-down" size={18} color="#666" />
+            <Ionicons name="chevron-down" size={18} color={t.textTertiary} />
           </TouchableOpacity>
         </>
       )}
@@ -684,7 +685,7 @@ export default function AdminScreen({ navigation }) {
       <TextInput
         style={styles.manualInput}
         placeholder="Custom message to both users..."
-        placeholderTextColor="#555"
+        placeholderTextColor={t.textTertiary}
         value={manualMessage}
         onChangeText={setManualMessage}
         multiline
@@ -700,19 +701,19 @@ export default function AdminScreen({ navigation }) {
                 <Image source={{ uri: listingA.coverImage }} style={styles.manualPreviewImg} />
               ) : (
                 <View style={styles.manualPreviewImgPlaceholder}>
-                  <Ionicons name="image-outline" size={20} color="#444" />
+                  <Ionicons name="image-outline" size={20} color={t.textTertiary} />
                 </View>
               )}
               <Text style={styles.manualPreviewItemTitle} numberOfLines={1}>{listingA.title}</Text>
               <Text style={styles.manualPreviewUser}>@{userA.username}</Text>
             </View>
-            <Ionicons name="swap-horizontal" size={20} color="#FF6B6B" style={{ marginHorizontal: 8 }} />
+            <Ionicons name="swap-horizontal" size={20} color={t.coral} style={{ marginHorizontal: 8 }} />
             <View style={styles.manualPreviewSide}>
               {listingB.coverImage ? (
                 <Image source={{ uri: listingB.coverImage }} style={styles.manualPreviewImg} />
               ) : (
                 <View style={styles.manualPreviewImgPlaceholder}>
-                  <Ionicons name="image-outline" size={20} color="#444" />
+                  <Ionicons name="image-outline" size={20} color={t.textTertiary} />
                 </View>
               )}
               <Text style={styles.manualPreviewItemTitle} numberOfLines={1}>{listingB.title}</Text>
@@ -733,10 +734,10 @@ export default function AdminScreen({ navigation }) {
         onPress={handleSendManual}
       >
         {sendingManual ? (
-          <ActivityIndicator size="small" color="#fff" />
+          <ActivityIndicator size="small" color={t.textWhite} />
         ) : (
           <>
-            <Ionicons name="send" size={16} color="#fff" style={{ marginRight: 8 }} />
+            <Ionicons name="send" size={16} color={t.textWhite} style={{ marginRight: 8 }} />
             <Text style={styles.manualSendBtnText}>Create Match & Send Messages</Text>
           </>
         )}
@@ -746,12 +747,12 @@ export default function AdminScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="dark-content" backgroundColor={t.background} />
 
       {/* Header */}
       <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.headerBack}>
-          <Ionicons name="arrow-back" size={22} color="#fff" />
+          <Ionicons name="arrow-back" size={22} color={t.textWhite} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Admin Panel</Text>
         <View style={{ width: 32 }} />
@@ -778,7 +779,7 @@ export default function AdminScreen({ navigation }) {
       {activeTab === 'All Users' && (
         usersLoading ? (
           <View style={styles.centered}>
-            <ActivityIndicator size="large" color="#FF6B6B" />
+            <ActivityIndicator size="large" color={t.coral} />
           </View>
         ) : (
           <FlatList
@@ -793,7 +794,7 @@ export default function AdminScreen({ navigation }) {
       {activeTab === 'Match Maker' && (
         matchLoading ? (
           <View style={styles.centered}>
-            <ActivityIndicator size="large" color="#FF6B6B" />
+            <ActivityIndicator size="large" color={t.coral} />
           </View>
         ) : (
           <FlatList
@@ -821,16 +822,16 @@ export default function AdminScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   centered: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   deniedText: {
-    color: '#666',
+    color: t.textTertiary,
     fontSize: 16,
     marginTop: 12,
   },
@@ -838,7 +839,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 8,
   },
   backBtnText: {
@@ -854,9 +855,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingBottom: 12,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: t.separator,
   },
   headerBack: {
     width: 32,
@@ -873,9 +874,9 @@ const styles = StyleSheet.create({
   /* Tabs */
   tabBar: {
     flexDirection: 'row',
-    backgroundColor: '#111',
+    backgroundColor: t.placeholder,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: t.separator,
   },
   tabItem: {
     flex: 1,
@@ -889,7 +890,7 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 13,
     fontWeight: '600',
-    color: '#666',
+    color: t.textTertiary,
   },
   tabTextActive: {
     color: '#FF6B6B',
@@ -906,19 +907,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: t.separator,
   },
   userAvatar: {
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
   },
   userAvatarPlaceholder: {
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -927,12 +928,12 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   userUsername: {
-    color: '#fff',
+    color: t.text,
     fontSize: 15,
     fontWeight: '600',
   },
   userDisplayName: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 13,
     marginTop: 1,
   },
@@ -947,7 +948,7 @@ const styles = StyleSheet.create({
     gap: 3,
   },
   userMetaText: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 12,
   },
 
@@ -973,13 +974,13 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 8,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
   },
   matchThumbPlaceholder: {
     width: 50,
     height: 50,
     borderRadius: 8,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -988,7 +989,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   matchSourceTitle: {
-    color: '#fff',
+    color: t.text,
     fontSize: 14,
     fontWeight: '600',
   },
@@ -998,7 +999,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   matchSourceMeta: {
-    color: '#666',
+    color: t.textTertiary,
     fontSize: 11,
     marginTop: 2,
   },
@@ -1008,7 +1009,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 8,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: t.separator,
   },
   matchArrow: {
     alignItems: 'center',
@@ -1024,14 +1025,14 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
     borderRadius: 6,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     marginLeft: 6,
   },
   matchThumbSmallPlaceholder: {
     width: 38,
     height: 38,
     borderRadius: 6,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 6,
@@ -1041,12 +1042,12 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   matchRowTitle: {
-    color: '#ddd',
+    color: t.textSecondary,
     fontSize: 13,
     fontWeight: '500',
   },
   matchRowUser: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 11,
     marginTop: 1,
   },
@@ -1063,13 +1064,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#444',
   },
   suggestBtnText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 12,
     fontWeight: '700',
   },
 
   emptyText: {
-    color: '#666',
+    color: t.textTertiary,
     fontSize: 14,
   },
 
@@ -1082,19 +1083,19 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
   manualTitle: {
-    color: '#fff',
+    color: t.text,
     fontSize: 20,
     fontWeight: '700',
     marginBottom: 4,
   },
   manualSubtitle: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 13,
     marginBottom: 20,
     lineHeight: 18,
   },
   manualLabel: {
-    color: '#aaa',
+    color: t.textTertiary,
     fontSize: 12,
     fontWeight: '600',
     textTransform: 'uppercase',
@@ -1123,14 +1124,14 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     marginRight: 10,
   },
   manualPickerAvatarPlaceholder: {
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 10,
@@ -1139,16 +1140,16 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 6,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     marginRight: 10,
   },
   manualPickerText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 14,
     flex: 1,
   },
   manualPickerPlaceholder: {
-    color: '#555',
+    color: t.textTertiary,
     fontSize: 14,
   },
   manualInput: {
@@ -1158,7 +1159,7 @@ const styles = StyleSheet.create({
     borderColor: '#1e1e1e',
     paddingHorizontal: 14,
     paddingVertical: 12,
-    color: '#fff',
+    color: t.text,
     fontSize: 14,
     minHeight: 80,
     textAlignVertical: 'top',
@@ -1173,7 +1174,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   manualPreviewTitle: {
-    color: '#aaa',
+    color: t.textTertiary,
     fontSize: 11,
     fontWeight: '600',
     textTransform: 'uppercase',
@@ -1193,25 +1194,25 @@ const styles = StyleSheet.create({
     width: 80,
     height: 100,
     borderRadius: 8,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
   },
   manualPreviewImgPlaceholder: {
     width: 80,
     height: 100,
     borderRadius: 8,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
   },
   manualPreviewItemTitle: {
-    color: '#fff',
+    color: t.text,
     fontSize: 13,
     fontWeight: '500',
     marginTop: 6,
     textAlign: 'center',
   },
   manualPreviewUser: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 11,
     marginTop: 2,
   },
@@ -1228,7 +1229,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#333',
   },
   manualSendBtnText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 15,
     fontWeight: '700',
   },
@@ -1240,7 +1241,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     zIndex: 100,
   },
   pickerHeader: {
@@ -1250,10 +1251,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: t.separator,
   },
   pickerTitle: {
-    color: '#fff',
+    color: t.text,
     fontSize: 16,
     fontWeight: '700',
   },
@@ -1266,20 +1267,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: t.separator,
   },
   pickerAvatar: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     marginRight: 12,
   },
   pickerAvatarPlaceholder: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 12,
@@ -1288,26 +1289,26 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 6,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     marginRight: 12,
   },
   pickerThumbPlaceholder: {
     width: 36,
     height: 36,
     borderRadius: 6,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 12,
   },
   pickerItemText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 14,
     fontWeight: '500',
     flex: 1,
   },
   pickerItemSub: {
-    color: '#888',
+    color: t.textTertiary,
     fontSize: 12,
   },
 });

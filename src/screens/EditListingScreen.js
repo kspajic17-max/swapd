@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } import { t } from '../app/theme';
+import 'react';
 import {
   View,
   Text,
@@ -410,7 +411,7 @@ export default function EditListingScreen({ route, navigation }) {
         {/* Header */}
         <View style={styles.headerRow}>
           <TouchableOpacity onPress={() => navigation.goBack()} activeOpacity={0.7}>
-            <Ionicons name="chevron-back" size={28} color="#fff" />
+            <Ionicons name="chevron-back" size={28} color={t.textWhite} />
           </TouchableOpacity>
           <Text style={styles.screenTitle}>Edit Listing</Text>
           <View style={{ width: 28 }} />
@@ -428,7 +429,7 @@ export default function EditListingScreen({ route, navigation }) {
                 onPress={() => removeExistingPhoto(img.id)}
                 activeOpacity={0.7}
               >
-                <Ionicons name="close-circle" size={22} color="#FF6B6B" />
+                <Ionicons name="close-circle" size={22} color={t.coral} />
               </TouchableOpacity>
               {index === 0 && newPhotos.length === 0 && (
                 <View style={styles.coverBadge}>
@@ -445,7 +446,7 @@ export default function EditListingScreen({ route, navigation }) {
                 onPress={() => removeNewPhoto(index)}
                 activeOpacity={0.7}
               >
-                <Ionicons name="close-circle" size={22} color="#FF6B6B" />
+                <Ionicons name="close-circle" size={22} color={t.coral} />
               </TouchableOpacity>
               {index === 0 && existingPhotos.length === 0 && (
                 <View style={styles.coverBadge}>
@@ -460,7 +461,7 @@ export default function EditListingScreen({ route, navigation }) {
               onPress={handleAddPhoto}
               activeOpacity={0.7}
             >
-              <Ionicons name="add" size={36} color="#555" />
+              <Ionicons name="add" size={36} color={t.textTertiary} />
             </TouchableOpacity>
           )}
         </View>
@@ -472,7 +473,7 @@ export default function EditListingScreen({ route, navigation }) {
         <TextInput
           style={styles.input}
           placeholder="e.g. Vintage Levi's 501 Jeans"
-          placeholderTextColor="#555"
+          placeholderTextColor={t.textTertiary}
           value={title}
           onChangeText={setTitle}
         />
@@ -481,7 +482,7 @@ export default function EditListingScreen({ route, navigation }) {
         <TextInput
           style={styles.input}
           placeholder="e.g. Nike, Zara, Vintage..."
-          placeholderTextColor="#555"
+          placeholderTextColor={t.textTertiary}
           value={brand}
           onChangeText={setBrand}
         />
@@ -495,7 +496,7 @@ export default function EditListingScreen({ route, navigation }) {
           <Text style={category ? styles.dropdownTextSelected : styles.dropdownTextPlaceholder}>
             {category || 'Select a category'}
           </Text>
-          <Ionicons name="chevron-down" size={20} color="#777" />
+          <Ionicons name="chevron-down" size={20} color={t.textTertiary} />
         </TouchableOpacity>
 
         <Modal
@@ -527,7 +528,7 @@ export default function EditListingScreen({ route, navigation }) {
                     <Text style={[styles.modalOptionText, category === item && styles.modalOptionTextSelected]}>
                       {item}
                     </Text>
-                    {category === item && <Ionicons name="checkmark" size={20} color="#FF6B6B" />}
+                    {category === item && <Ionicons name="checkmark" size={20} color={t.coral} />}
                   </TouchableOpacity>
                 )}
               />
@@ -545,7 +546,7 @@ export default function EditListingScreen({ route, navigation }) {
           <Text style={tags.length > 0 ? styles.dropdownTextSelected : styles.dropdownTextPlaceholder}>
             {tags.length > 0 ? tags.join(', ') : 'Select vibes'}
           </Text>
-          <Ionicons name="chevron-down" size={20} color="#777" />
+          <Ionicons name="chevron-down" size={20} color={t.textTertiary} />
         </TouchableOpacity>
 
         <Modal
@@ -581,7 +582,7 @@ export default function EditListingScreen({ route, navigation }) {
                       <Text style={[styles.modalOptionText, isSelected && styles.modalOptionTextSelected]}>
                         {item}
                       </Text>
-                      {isSelected && <Ionicons name="checkmark" size={20} color="#FF6B6B" />}
+                      {isSelected && <Ionicons name="checkmark" size={20} color={t.coral} />}
                     </TouchableOpacity>
                   );
                 }}
@@ -613,7 +614,7 @@ export default function EditListingScreen({ route, navigation }) {
           <Text style={size ? styles.dropdownTextSelected : styles.dropdownTextPlaceholder}>
             {size || 'Select a size'}
           </Text>
-          <Ionicons name="chevron-down" size={20} color="#777" />
+          <Ionicons name="chevron-down" size={20} color={t.textTertiary} />
         </TouchableOpacity>
 
         <Modal
@@ -645,7 +646,7 @@ export default function EditListingScreen({ route, navigation }) {
                     <Text style={[styles.modalOptionText, size === item && styles.modalOptionTextSelected]}>
                       {item}
                     </Text>
-                    {size === item && <Ionicons name="checkmark" size={20} color="#FF6B6B" />}
+                    {size === item && <Ionicons name="checkmark" size={20} color={t.coral} />}
                   </TouchableOpacity>
                 )}
               />
@@ -660,7 +661,7 @@ export default function EditListingScreen({ route, navigation }) {
         <TextInput
           style={styles.input}
           placeholder="e.g. Black, Navy Blue..."
-          placeholderTextColor="#555"
+          placeholderTextColor={t.textTertiary}
           value={color}
           onChangeText={setColor}
         />
@@ -671,7 +672,7 @@ export default function EditListingScreen({ route, navigation }) {
           <TextInput
             style={styles.valueInput}
             placeholder="0"
-            placeholderTextColor="#555"
+            placeholderTextColor={t.textTertiary}
             keyboardType="numeric"
             value={estimatedValue}
             onChangeText={setEstimatedValue}
@@ -699,7 +700,7 @@ export default function EditListingScreen({ route, navigation }) {
         <TextInput
           style={[styles.input, styles.multilineInput]}
           placeholder="Anything else buyers should know — measurements, styling tips, flaws..."
-          placeholderTextColor="#555"
+          placeholderTextColor={t.textTertiary}
           value={description}
           onChangeText={setDescription}
           multiline
@@ -715,7 +716,7 @@ export default function EditListingScreen({ route, navigation }) {
           disabled={isSaving}
         >
           {isSaving ? (
-            <ActivityIndicator color="#fff" />
+            <ActivityIndicator color={t.textWhite} />
           ) : (
             <Text style={styles.postButtonText}>Save Changes</Text>
           )}
@@ -730,7 +731,7 @@ export default function EditListingScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   scrollView: {
     flex: 1,
@@ -749,14 +750,14 @@ const styles = StyleSheet.create({
   screenTitle: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#fff',
+    color: t.text,
   },
 
   // Section headers
   sectionHeader: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#aaa',
+    color: t.textTertiary,
     textTransform: 'uppercase',
     letterSpacing: 1,
     marginTop: 28,
@@ -764,7 +765,7 @@ const styles = StyleSheet.create({
   },
   sectionHint: {
     fontSize: 13,
-    color: '#555',
+    color: t.textTertiary,
     marginTop: -8,
     marginBottom: 12,
   },
@@ -773,21 +774,21 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#ccc',
+    color: t.textSecondary,
     marginBottom: 8,
     marginTop: 12,
   },
 
   // Inputs
   input: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 16,
-    color: '#fff',
+    color: t.text,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   multilineInput: {
     minHeight: 90,
@@ -798,23 +799,23 @@ const styles = StyleSheet.create({
   valueInputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
     paddingHorizontal: 16,
   },
   dollarSign: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#777',
+    color: t.textTertiary,
     marginRight: 4,
   },
   valueInput: {
     flex: 1,
     paddingVertical: 14,
     fontSize: 16,
-    color: '#fff',
+    color: t.text,
   },
 
   // Chips
@@ -824,12 +825,12 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   chip: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 20,
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   chipSelected: {
     backgroundColor: '#FF6B6B20',
@@ -837,7 +838,7 @@ const styles = StyleSheet.create({
   },
   chipText: {
     fontSize: 14,
-    color: '#888',
+    color: t.textTertiary,
     fontWeight: '500',
   },
   chipTextSelected: {
@@ -867,7 +868,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 4,
     right: 4,
-    backgroundColor: '#0a0a0a99',
+    backgroundColor: t.overlay,
     borderRadius: 11,
   },
   coverBadge: {
@@ -880,7 +881,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   coverBadgeText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 10,
     fontWeight: '700',
     textTransform: 'uppercase',
@@ -891,11 +892,11 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
     borderStyle: 'dashed',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
   },
 
   // Toggle
@@ -903,12 +904,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     padding: 16,
     marginTop: 12,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   toggleLabel: {
     flex: 1,
@@ -917,23 +918,23 @@ const styles = StyleSheet.create({
   toggleText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#fff',
+    color: t.text,
   },
   toggleHint: {
     fontSize: 12,
-    color: '#666',
+    color: t.textTertiary,
     marginTop: 2,
   },
 
   // Gender toggle
   genderToggle: {
     flexDirection: 'row',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 10,
     padding: 3,
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   genderOption: {
     flex: 1,
@@ -947,31 +948,31 @@ const styles = StyleSheet.create({
   genderOptionText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#777',
+    color: t.textTertiary,
   },
   genderOptionTextActive: {
-    color: '#fff',
+    color: t.text,
   },
 
   // Dropdown
   dropdownButton: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 14,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   dropdownTextSelected: {
     fontSize: 16,
-    color: '#fff',
+    color: t.text,
   },
   dropdownTextPlaceholder: {
     fontSize: 16,
-    color: '#555',
+    color: t.textTertiary,
   },
 
   // Modal
@@ -981,7 +982,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   modalContent: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingBottom: 40,
@@ -1006,7 +1007,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
     paddingHorizontal: 20,
     marginBottom: 12,
   },
@@ -1029,7 +1030,7 @@ const styles = StyleSheet.create({
   },
   modalOptionText: {
     fontSize: 16,
-    color: '#ccc',
+    color: t.textSecondary,
   },
   modalOptionTextSelected: {
     color: '#FF6B6B',
@@ -1048,7 +1049,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   postButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 18,
     fontWeight: '700',
   },

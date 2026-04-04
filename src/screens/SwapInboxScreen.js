@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } import { t } from '../app/theme';
+import 'react';
 import {
   View,
   Text,
@@ -369,7 +370,7 @@ export default function SwapInboxScreen({ navigation }) {
                     <Image source={{ uri: ol.coverImage }} style={styles.offeredImage} />
                   ) : (
                     <View style={[styles.offeredImage, styles.offeredImagePlaceholder]}>
-                      <Ionicons name="image-outline" size={16} color="#555" />
+                      <Ionicons name="image-outline" size={16} color={t.textTertiary} />
                     </View>
                   )}
                   <Text style={styles.offeredItemTitle} numberOfLines={1}>{ol.title}</Text>
@@ -382,7 +383,7 @@ export default function SwapInboxScreen({ navigation }) {
         {/* Cash addition */}
         {item.offer?.cash_addition > 0 && (
           <View style={styles.cashBadge}>
-            <Ionicons name="cash-outline" size={14} color="#FF6B6B" />
+            <Ionicons name="cash-outline" size={14} color={t.coral} />
             <Text style={styles.cashBadgeText}>+ ${item.offer.cash_addition} cash</Text>
           </View>
         )}
@@ -426,7 +427,7 @@ export default function SwapInboxScreen({ navigation }) {
               onPress={() => handleAccept(item.offer, item)}
               activeOpacity={0.7}
             >
-              <Ionicons name="checkmark" size={18} color="#fff" style={{ marginRight: 4 }} />
+              <Ionicons name="checkmark" size={18} color={t.textWhite} style={{ marginRight: 4 }} />
               <Text style={styles.acceptButtonText}>Accept</Text>
             </TouchableOpacity>
           </View>
@@ -442,7 +443,7 @@ export default function SwapInboxScreen({ navigation }) {
             }
             activeOpacity={0.7}
           >
-            <Ionicons name="cube-outline" size={16} color="#fff" style={{ marginRight: 6 }} />
+            <Ionicons name="cube-outline" size={16} color={t.textWhite} style={{ marginRight: 6 }} />
             <Text style={styles.shippingButtonText}>Shipping Details</Text>
           </TouchableOpacity>
         ) : (
@@ -465,7 +466,7 @@ export default function SwapInboxScreen({ navigation }) {
           }
           activeOpacity={0.7}
         >
-          <Ionicons name="chatbubble-outline" size={15} color="#888" />
+          <Ionicons name="chatbubble-outline" size={15} color={t.textTertiary} />
           <Text style={styles.messageButtonText}>Message</Text>
         </TouchableOpacity>
       </View>
@@ -484,7 +485,7 @@ export default function SwapInboxScreen({ navigation }) {
             <Image source={{ uri: item.targetImage }} style={styles.sentItemImage} />
           ) : (
             <View style={[styles.sentItemImage, styles.offeredImagePlaceholder]}>
-              <Ionicons name="image-outline" size={20} color="#555" />
+              <Ionicons name="image-outline" size={20} color={t.textTertiary} />
             </View>
           )}
           <View style={styles.cardHeaderText}>
@@ -499,7 +500,7 @@ export default function SwapInboxScreen({ navigation }) {
 
         {item.offer?.cash_addition > 0 && (
           <View style={styles.cashBadge}>
-            <Ionicons name="cash-outline" size={14} color="#FF6B6B" />
+            <Ionicons name="cash-outline" size={14} color={t.coral} />
             <Text style={styles.cashBadgeText}>+ ${item.offer.cash_addition} cash included</Text>
           </View>
         )}
@@ -516,7 +517,7 @@ export default function SwapInboxScreen({ navigation }) {
             }
             activeOpacity={0.7}
           >
-            <Ionicons name="cube-outline" size={16} color="#fff" style={{ marginRight: 6 }} />
+            <Ionicons name="cube-outline" size={16} color={t.textWhite} style={{ marginRight: 6 }} />
             <Text style={styles.shippingButtonText}>Shipping Details</Text>
           </TouchableOpacity>
         ) : (
@@ -539,7 +540,7 @@ export default function SwapInboxScreen({ navigation }) {
           }
           activeOpacity={0.7}
         >
-          <Ionicons name="chatbubble-outline" size={15} color="#888" />
+          <Ionicons name="chatbubble-outline" size={15} color={t.textTertiary} />
           <Text style={styles.messageButtonText}>Message</Text>
         </TouchableOpacity>
       </View>
@@ -551,7 +552,7 @@ export default function SwapInboxScreen({ navigation }) {
       <Ionicons
         name={type === 'received' ? 'mail-open-outline' : 'paper-plane-outline'}
         size={48}
-        color="#333"
+        color={t.textTertiary}
       />
       <Text style={styles.emptyTitle}>
         {type === 'received' ? 'No offers yet' : 'No offers sent'}
@@ -567,7 +568,7 @@ export default function SwapInboxScreen({ navigation }) {
   if (loading) {
     return (
       <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
-        <ActivityIndicator size="large" color="#FF6B6B" />
+        <ActivityIndicator size="large" color={t.coral} />
       </View>
     );
   }
@@ -639,18 +640,18 @@ export default function SwapInboxScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   header: {
     paddingTop: 56,
     paddingBottom: 12,
     paddingHorizontal: 20,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
   },
   headerTitle: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#fff',
+    color: t.text,
   },
 
   // Tabs
@@ -658,7 +659,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
+    borderBottomColor: t.separator,
   },
   tab: {
     flexDirection: 'row',
@@ -675,10 +676,10 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#666',
+    color: t.textTertiary,
   },
   tabTextActive: {
-    color: '#fff',
+    color: t.text,
   },
   tabBadge: {
     backgroundColor: '#FF6B6B',
@@ -693,7 +694,7 @@ const styles = StyleSheet.create({
   tabBadgeText: {
     fontSize: 11,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
   },
 
   // Scroll
@@ -708,12 +709,12 @@ const styles = StyleSheet.create({
 
   // Cards
   card: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: t.card,
     borderRadius: 16,
     padding: 16,
     marginBottom: 14,
     borderWidth: 1,
-    borderColor: '#2a2a2a',
+    borderColor: t.separator,
   },
   cardHeader: {
     flexDirection: 'row',
@@ -742,12 +743,12 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 15,
-    color: '#ccc',
+    color: t.textSecondary,
     lineHeight: 22,
   },
   usernameHighlight: {
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
   },
   itemHighlight: {
     fontWeight: '700',
@@ -755,12 +756,12 @@ const styles = StyleSheet.create({
   },
   cardTime: {
     fontSize: 12,
-    color: '#555',
+    color: t.textTertiary,
     marginTop: 3,
   },
   sentOwner: {
     fontSize: 13,
-    color: '#777',
+    color: t.textTertiary,
     marginTop: 2,
   },
   sentItemImage: {
@@ -777,7 +778,7 @@ const styles = StyleSheet.create({
   offeredLabel: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#888',
+    color: t.textTertiary,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
     marginBottom: 8,
@@ -795,13 +796,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   offeredImagePlaceholder: {
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
   offeredItemTitle: {
     fontSize: 11,
-    color: '#999',
+    color: t.textTertiary,
     marginTop: 4,
   },
 
@@ -826,13 +827,13 @@ const styles = StyleSheet.create({
   // Message
   messageContainer: {
     marginTop: 12,
-    backgroundColor: '#0a0a0a',
+    backgroundColor: t.background,
     borderRadius: 10,
     padding: 12,
   },
   messageText: {
     fontSize: 14,
-    color: '#aaa',
+    color: t.textTertiary,
     fontStyle: 'italic',
     lineHeight: 20,
   },
@@ -853,7 +854,7 @@ const styles = StyleSheet.create({
   declineButtonText: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#999',
+    color: t.textTertiary,
   },
   acceptButton: {
     flex: 1.5,
@@ -867,7 +868,7 @@ const styles = StyleSheet.create({
   acceptButtonText: {
     fontSize: 15,
     fontWeight: '700',
-    color: '#fff',
+    color: t.text,
   },
   counterButton: {
     flex: 1,
@@ -898,7 +899,7 @@ const styles = StyleSheet.create({
   messageButtonText: {
     fontSize: 13,
     fontWeight: '600',
-    color: '#888',
+    color: t.textTertiary,
   },
 
   // Shipping button
@@ -912,7 +913,7 @@ const styles = StyleSheet.create({
     marginTop: 14,
   },
   shippingButtonText: {
-    color: '#fff',
+    color: t.text,
     fontSize: 15,
     fontWeight: '700',
   },
@@ -948,12 +949,12 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#555',
+    color: t.textTertiary,
     marginTop: 16,
   },
   emptySubtitle: {
     fontSize: 14,
-    color: '#444',
+    color: t.textTertiary,
     textAlign: 'center',
     marginTop: 8,
     lineHeight: 20,
