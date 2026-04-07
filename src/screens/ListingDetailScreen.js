@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } import { t } from '../app/theme';
-import 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { t } from '../app/theme';
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import {
   ActivityIndicator,
   Alert,
   StatusBar,
+  FlatList,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { supabase } from '../lib/supabase';

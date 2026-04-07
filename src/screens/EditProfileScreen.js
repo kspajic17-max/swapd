@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { t } from '../app/theme';
-import 'react';
 import {
   View,
   Text,

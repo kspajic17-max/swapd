@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useMemo } import { t } from '../app/theme';
-import 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   View,
   Text,
@@ -14,6 +13,7 @@ import {
   ActivityIndicator,
   Dimensions,
 } from 'react-native';
+import { t } from '../app/theme';
 import { Ionicons } from '@expo/vector-icons';
 import { supabase } from '../lib/supabase';
 import { sendPushNotification, getUserPushToken } from '../lib/notifications';

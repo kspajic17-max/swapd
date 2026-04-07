@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } import { t } from '../app/theme';
-import 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View,
   Text,
@@ -12,6 +11,7 @@ import {
   Image,
   ActivityIndicator,
 } from 'react-native';
+import { t } from '../app/theme';
 import { Ionicons } from '@expo/vector-icons';
 import { supabase } from '../lib/supabase';
 import { useFocusEffect } from '@react-navigation/native';

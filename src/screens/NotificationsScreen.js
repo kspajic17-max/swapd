@@ -1,5 +1,5 @@
-import React, { useState, useCallback } import { t } from '../app/theme';
-import 'react';
+import React, { useState, useCallback } from 'react';
+import { t } from '../app/theme';
 import {
   View,
   Text,
